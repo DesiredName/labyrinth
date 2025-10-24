@@ -3,6 +3,9 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
+  build: {
+    sourcemap: process.env.NODE_ENV == 'development',
+  },
   plugins: [react()],
   resolve: {
     alias: {

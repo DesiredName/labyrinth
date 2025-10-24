@@ -2,13 +2,17 @@ import ReactDOM from 'react-dom/client';
 import { UIButton, UIInput } from '@webx/ui';
 import { greet } from '@utils/greet';
 
+function handleUserClick() {
+    alert(greet('Developer'));
+}   
+
 const App = () => (
     <div style={{ fontFamily: 'sans-serif', padding: '2rem' }}>
         <h1>Vite + npm Workspaces</h1>
         <UIButton
             as='button'
             size='lg'
-            onClick={() => alert(greet('Developer'))}
+            onClick={handleUserClick}
         >
             Click me
         </UIButton>
@@ -20,7 +24,7 @@ const App = () => (
             size='lg'
             target='_blank'
             href='https://google.com'
-            onClick={() => alert(greet('Developer'))}
+            onClick={handleUserClick}
         >
             that is a link
         </UIButton>
