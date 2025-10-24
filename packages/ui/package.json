@@ -1,0 +1,19 @@
+{
+  "name": "@webx/ui",
+  "version": "0.0.1",
+  "main": "dist/index.es.js",
+  "types": "dist/index.es.d.ts",
+  "exports": {
+    ".": { "import": "./dist/index.es.js", "types": "./dist.index.es.s.ts" }
+  },
+  "peerDependencies": {
+    "react": "latest",
+    "styled-components": "latest"
+  },
+  "scripts": {
+    "dev": "vite build -w"
+  },
+  "bundleDependencies": [
+    "@webx/ui"
+  ]
+}

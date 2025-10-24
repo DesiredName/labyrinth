@@ -1,0 +1,7 @@
+{
+  "name": "@webx/config",
+  "version": "0.0.1",
+  "bundleDependencies": [
+    "@webx/config"
+  ]
+}
