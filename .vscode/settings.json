@@ -8,10 +8,12 @@
         "source.fixAll": "always",
         "source.fixAll.eslint": "always"
     },
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": false,
-    "html.format.wrapAttributes": "force-expand-multiline",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
     "css.customData": [
         ".vscode/tailwind.json"
     ],
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

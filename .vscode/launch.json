@@ -22,14 +22,25 @@
       "runtimeArgs": ["run", "dev"],
       "console": "integratedTerminal",
       "autoAttachChildProcesses": true
+    },
+    {
+      "name": "App Server (apps/server)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true
     }
   ],
   "compounds": [
     {
-      "name": "Debug Vite + Chrome",
+      "name": "Debug App",
       "configurations": [
         "Vite Dev Server (apps/web)",
-        "Vite: React app (apps/web)"
+        "Vite: React app (apps/web)",
+        "App Server (apps/server)"
       ]
     }
   ]

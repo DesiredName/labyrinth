@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
     "baseUrl": ".",
     "sourceMap": true,
@@ -35,6 +36,9 @@
     },
     {
       "path": "app/web"
+    },
+    {
+      "path": "app/server"
     }
   ]
 }
