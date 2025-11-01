@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/node": "latest",
     "@types/styled-components": "latest",
+    "autoprefixer": "latest",
     "concurrently": "latest",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
@@ -24,6 +25,10 @@
     "vite-plugin-dts": "latest"
   },
   "dependencies": {
-    "styled-components": "latest"
+    "@tailwindcss/vite": "latest",
+    "class-variance-authority": "latest",
+    "clsx": "latest",
+    "styled-components": "latest",
+    "tailwindcss": "latest"
   }
 }

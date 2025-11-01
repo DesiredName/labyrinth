@@ -1,7 +1,12 @@
+/**
+ * @type {import('eslint').Linter.Config<import('eslint/rules').ESLintRules>}
+ */
+
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   plugins: ["react", "@typescript-eslint"],
+  files: ["**/*.ts?(x)"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -24,4 +29,4 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
   }
-};
+}

@@ -1,0 +1,17 @@
+{
+    "files.autoSave": "onFocusChange",
+    "files.associations": {
+        "*.css": "tailwindcss",
+        "*.d.ts": "typescript"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.fixAll.eslint": "always"
+    },
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": false,
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "css.customData": [
+        ".vscode/tailwind.json"
+    ],
+}

@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Vite: React app (apps/web)",
+      "type": "chrome",               
+      "request": "launch",
+      "url": "http://localhost:5173",  
+      "webRoot": "${workspaceFolder}/apps/web",
+      "sourceMaps": true,
+      "trace": true,
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Vite Dev Server (apps/web)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/apps/web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal",
+      "autoAttachChildProcesses": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Vite + Chrome",
+      "configurations": [
+        "Vite Dev Server (apps/web)",
+        "Vite: React app (apps/web)"
+      ]
+    }
+  ]
+}

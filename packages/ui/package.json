@@ -4,7 +4,11 @@
   "main": "dist/index.es.js",
   "types": "dist/index.es.d.ts",
   "exports": {
-    ".": { "import": "./dist/index.es.js", "types": "./dist.index.es.s.ts" }
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.es.s.ts"
+    },
+    "./index.css": "./dist/index.css"
   },
   "peerDependencies": {
     "react": "latest",
@@ -15,5 +19,8 @@
   },
   "bundleDependencies": [
     "@webx/ui"
-  ]
+  ],
+  "dependencies": {
+    "tailwind-merge": "latest"
+  }
 }

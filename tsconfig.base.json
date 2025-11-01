@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "erasableSyntaxOnly": true,
     "baseUrl": ".",
+    "sourceMap": true,
     "paths": {
       "@ui/*": [
         "packages/ui/src/*"

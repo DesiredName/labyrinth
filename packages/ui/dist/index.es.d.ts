@@ -1,22 +1,28 @@
-import { default as default_2 } from 'react';
-import { JSX } from 'react/jsx-runtime';
+import { ClassProp } from 'class-variance-authority/types';
+import * as React_2 from 'react';
+import { VariantProps } from 'class-variance-authority';
 
-declare type ButtonProps = CommonProps & ({
-    as: 'button';
-} & default_2.ButtonHTMLAttributes<HTMLButtonElement> | {
-    as: 'a';
-} & default_2.AnchorHTMLAttributes<HTMLAnchorElement>);
+declare const buttonVariants: (props?: ({
+    uiSize?: "xs" | "sm" | "base" | "lg" | "xl" | null | undefined;
+    variant?: "primary" | "secondary" | "outline" | null | undefined;
+} & ClassProp) | undefined) => string;
 
-declare type CommonProps = {
-    children: default_2.ReactNode;
-    className?: string;
-    size?: UIButtonSize;
-};
+declare interface InputProps extends React_2.InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {
+}
 
-export declare function UIButton(props: ButtonProps): JSX.Element;
+declare const inputVariants: (props?: ({
+    uiSize?: "xs" | "sm" | "base" | "lg" | "xl" | null | undefined;
+} & ClassProp) | undefined) => string;
 
-export declare type UIButtonSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+export declare const UIButton: React_2.ForwardRefExoticComponent<UIButtonProps & React_2.RefAttributes<HTMLButtonElement>>;
 
-export declare function UIInput(): JSX.Element;
+export declare interface UIButtonProps extends React_2.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+}
+
+export declare type UIButtonSize = NonNullable<VariantProps<typeof buttonVariants>['uiSize']>;
+
+export declare type UIButtonVariant = NonNullable<VariantProps<typeof buttonVariants>['variant']>;
+
+export declare const UIInput: React_2.ForwardRefExoticComponent<InputProps & React_2.RefAttributes<HTMLInputElement>>;
 
 export { }

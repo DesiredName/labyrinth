@@ -9,11 +9,15 @@
     "@webx/ui": "0.0.1",
     "@webx/utils": "0.0.1",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-router": "latest",
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
+    "@types/eslint": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/react-router": "latest",
     "@vitejs/plugin-react": "latest",
     "vite": "latest"
   }

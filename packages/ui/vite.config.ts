@@ -2,15 +2,17 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
 import path from "path";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     react(),
     dts({
       rollupTypes: true,
       include: ["src"],
       outDir: "dist",
-      logLevel:'info',
+      logLevel: 'info',
       tsconfigPath: path.resolve(__dirname, "../../tsconfig.base.json")
     })
   ],
@@ -22,13 +24,20 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`
     },
     minify: 'esbuild',
+    sourcemap: process.env.NODE_ENV == 'development',
     rollupOptions: {
       external: ["react", "react-dom", "styled-components"],
       output: {
-        globals: { 
+        globals: {
           react: 'react',
           'react-dom': 'react-dom',
           'styled-components': 'styled-components'
+        },
+        assetFileNames: (asset) => {
+          if (asset.originalFileName === 'style.css') {
+            return 'index.css';
+          }
+          return asset.name ?? '';
         }
       }
     },
