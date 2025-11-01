@@ -1,0 +1,18 @@
+{
+  "name": "@webx/server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --env-file=.env src/server.ts"
+  },
+  "dependencies": {
+    "@webx/utils": "0.0.1",
+    "express": "latest",
+    "mssql": "latest",
+    "sequelize": "latest",
+    "zod": "latest"
+  }, 
+  "devDependencies": {
+    "@types/express": "latest"
+  }
+}
