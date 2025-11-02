@@ -3,20 +3,31 @@ import { clsxtw } from '../../utils/clsxtw';
 import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import type React from 'react';
+import { z } from 'zod';
+import { useZodForm } from './parse.form';
 
 type RestoreFormProps = React.ComponentPropsWithoutRef<'form'>;
 
+const restoreSchema = z.object({
+  email: z.email('Invalid email address'),
+});
+
 const RestoreForm = (props: RestoreFormProps) => {
   const navigate = useNavigate();
+  const { errors, validate } = useZodForm(restoreSchema);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const email = formData.get('email');
+    const result = validate(formData);
 
-    console.log(email);
+    if (result.success === false) {
+      return;
+    }
+
+    console.log('ok');
     // const res = await fetch('/api/signup', {
     //   method: 'POST',
     //   body: formData,
@@ -37,12 +48,21 @@ const RestoreForm = (props: RestoreFormProps) => {
         name="email"
         autoComplete="email"
         type="email"
+        required
         autoFocus
       />
+      {errors.email && (
+        <div className="col-span-2 text-right text-red-700 text-sm">
+          {errors.email}
+        </div>
+      )}
+
       <UIButton type="submit" className="col-span-2">
         Submit
       </UIButton>
+
       <br></br>
+
       <div className="text-center text-sm col-span-2">
         <span className="text-gray-500 ">Already have an account?</span>&nbsp;
         <Link to="/signin">Sign in</Link>

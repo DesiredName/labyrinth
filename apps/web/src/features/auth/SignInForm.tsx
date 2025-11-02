@@ -2,21 +2,32 @@ import { Link, useNavigate } from 'react-router';
 import { clsxtw } from '../../utils/clsxtw';
 import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
+import { useZodForm } from './parse.form';
+import z from 'zod';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
 
+const signInSchema = z.object({
+  email: z.email('Invalid email address'),
+  password: z.string().min(12, 'Password must be at least 12 characters'),
+});
+
 const SignInForm = (props: SignInFormProps) => {
   const navigate = useNavigate();
+  const { errors, validate } = useZodForm(signInSchema);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const email = formData.get('email');
-    const password = formData.get('password');
+    const result = validate(formData);
 
-    console.log(email, password);
+    if (result.success === false) {
+      return;
+    }
+
+    console.log('ok');
     // const res = await fetch('/api/signup', {
     //   method: 'POST',
     //   body: formData,
@@ -37,18 +48,34 @@ const SignInForm = (props: SignInFormProps) => {
         type="email"
         autoComplete="email"
         autoFocus
+        required
       />
+      {errors.email && (
+        <div className="col-span-2 text-right text-red-700 text-sm">
+          {errors.email}
+        </div>
+      )}
+
       <label htmlFor="password">Password</label>
       <UIInput
         id="password"
         name="password"
         type="password"
         autoComplete="current-password"
+        required
       />
+      {errors.password && (
+        <div className="col-span-2 text-right text-red-700 text-sm">
+          {errors.password}
+        </div>
+      )}
+
       <UIButton type="submit" className="col-span-2">
         Sign in
       </UIButton>
+
       <br></br>
+
       <div className="text-center text-sm col-span-2">
         <span className="text-gray-500 ">Don't have an account?</span>&nbsp;
         <Link to="/signup">Sign up</Link>
