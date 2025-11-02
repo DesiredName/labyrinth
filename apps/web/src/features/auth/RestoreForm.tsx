@@ -4,9 +4,9 @@ import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import type React from 'react';
 
-type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
+type RestoreFormProps = React.ComponentPropsWithoutRef<'form'>;
 
-const SignUpForm = (props: SignUpFormProps) => {
+const RestoreForm = (props: RestoreFormProps) => {
   const navigate = useNavigate();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -15,10 +15,8 @@ const SignUpForm = (props: SignUpFormProps) => {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const email = formData.get('email');
-    const username = formData.get('username');
-    const password = formData.get('password');
 
-    console.log(email, username, password);
+    console.log(email);
     // const res = await fetch('/api/signup', {
     //   method: 'POST',
     //   body: formData,
@@ -33,24 +31,16 @@ const SignUpForm = (props: SignUpFormProps) => {
       method="post"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="username">Username</label>
+      <label htmlFor="email">Email</label>
       <UIInput
-        id="username"
-        name="username"
-        autoComplete="username"
+        id="email"
+        name="email"
+        autoComplete="email"
+        type="email"
         autoFocus
       />
-      <label htmlFor="email">Email</label>
-      <UIInput id="email" name="email" type="email" autoComplete="email" />
-      <label htmlFor="password">Password</label>
-      <UIInput
-        id="password"
-        name="password"
-        type="password"
-        autoComplete="new-password"
-      />
       <UIButton type="submit" className="col-span-2">
-        Sign up
+        Submit
       </UIButton>
       <br></br>
       <div className="text-center text-sm col-span-2">
@@ -61,4 +51,4 @@ const SignUpForm = (props: SignUpFormProps) => {
   );
 };
 
-export { SignUpForm };
+export { RestoreForm };

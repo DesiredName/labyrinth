@@ -3,7 +3,8 @@ import type { Optional } from 'sequelize';
 
 type UserAttributes = {
   id: number;
-  name: string;
+  email: string;
+  username: string;
   password: string;
   salt: string;
   createdAt?: Date;
@@ -18,7 +19,7 @@ type UserSafeAttributes = Omit<UserAttributes, 'password' | 'salt'>;
 
 class User extends Model<UserAttributes, UserCreationAttributes> {}
 
-function initUser(sequelize: Sequelize) {
+function initUser(db: Sequelize) {
   User.init(
     {
       id: {
@@ -26,10 +27,14 @@ function initUser(sequelize: Sequelize) {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: 'uq_username',
+        unique: 'uq_email',
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
@@ -40,7 +45,7 @@ function initUser(sequelize: Sequelize) {
         allowNull: false,
       },
     },
-    { sequelize },
+    { sequelize: db },
   );
 }
 

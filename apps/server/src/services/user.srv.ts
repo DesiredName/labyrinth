@@ -3,19 +3,15 @@ import z from 'zod';
 import { generateSalt, hashPassword } from '../utils/passwordUtils.ts';
 
 class UserService {
-  static async createUser(name: string, password: string) {
+  static async createUser(email: string, username: string, password: string) {
     const salt = await generateSalt();
     const hash = await hashPassword(password, salt);
-    const user = await User.create({ name, password: hash, salt });
+    const user = await User.create({ email, username, password: hash, salt });
     return user;
   }
 
-  static async getAllUsers() {
-    return await User.findAll();
-  }
-
-  static async getUserByNameAndPass(name: string, password: string) {
-    const user = await User.findOne({ where: { name } });
+  static async getUserByEmailAndPass(email: string, password: string) {
+    const user = await User.findOne({ where: { email } });
     if (user == null) {
       return user;
     }
@@ -26,20 +22,17 @@ class UserService {
       return sanitizeUser(user);
     }
   }
-
-  static async getUserById(id: string | number) {
-    const user = await User.findByPk(id);
-    return sanitizeUser(user);
-  }
 }
 
-const CreateUserParams = z.object({
-  name: z.string().nonempty(),
+const SignupUserParams = z.object({
+  email: z.email().nonempty(),
+  username: z.string().nonempty(),
   password: z.string().nonempty(),
 });
 
-const GetUserByIDParams = z.object({
-  id: z.union([z.string().nonempty(), z.number().min(0)]),
+const SigninUserParams = z.object({
+  email: z.email().nonempty(),
+  password: z.string().nonempty(),
 });
 
-export { CreateUserParams, GetUserByIDParams, UserService };
+export { SignupUserParams, SigninUserParams, UserService };

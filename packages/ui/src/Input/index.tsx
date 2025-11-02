@@ -24,9 +24,9 @@ export interface InputProps
     VariantProps<typeof inputVariants> {}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ uiSize, className, ...props }, ref) => {
+  ({ uiSize, className, size, ...props }, ref) => {
     const classes = clsxtw(inputVariants({ uiSize }), className);
-    return <input ref={ref} className={classes} {...props} />;
+    return <input ref={ref} size={size ?? 1} className={classes} {...props} />;
   },
 );
 

@@ -1,7 +1,10 @@
+import { RestoreForm } from '../../features/auth/RestoreForm';
+import { PageTransition } from '../../components/PageTransition';
+
 const RestorePassword = () => (
-    <div>
-        Restore password
-    </div>
+  <PageTransition>
+    <RestoreForm className="w-80" />
+  </PageTransition>
 );
 
 export { RestorePassword };

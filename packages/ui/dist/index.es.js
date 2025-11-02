@@ -3089,9 +3089,9 @@ const Tr = Ce("inline-block border border-gray-200 rounded-md", {
     uiSize: "base"
   }
 }), Pr = Se.forwardRef(
-  ({ uiSize: e, className: n, ...t }, o) => {
-    const i = $e(Tr({ uiSize: e }), n);
-    return /* @__PURE__ */ Ae.jsx("input", { ref: o, className: i, ...t });
+  ({ uiSize: e, className: n, size: t, ...o }, i) => {
+    const l = $e(Tr({ uiSize: e }), n);
+    return /* @__PURE__ */ Ae.jsx("input", { ref: i, size: t ?? 1, className: l, ...o });
   }
 );
 Pr.displayName = "Input";

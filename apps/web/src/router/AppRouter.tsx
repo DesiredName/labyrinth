@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { Navigate, Route, Routes, useLocation } from 'react-router';
 import { AuthLayout } from '../layouts/auth.layout';
 import { BaseLayout } from '../layouts/base.layout';
 import { NotFound } from '../not-found';
@@ -11,13 +11,15 @@ import { EmailLists } from '../pages/email-lists';
 import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
+import { AnimatePresence } from 'framer-motion';
 
 const AppRouter = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const location = useLocation();
 
   return (
-    <BrowserRouter>
-      <Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         <Route
           path="/"
           element={
@@ -47,7 +49,7 @@ const AppRouter = () => {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </AnimatePresence>
   );
 };
 
