@@ -3,7 +3,7 @@ import { clsxtw } from '../../utils/clsxtw';
 import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import type React from 'react';
-import { useZodForm } from './parse.form';
+import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 
 type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
@@ -16,7 +16,7 @@ const signUpSchema = z.object({
 
 const SignUpForm = (props: SignUpFormProps) => {
   const navigate = useNavigate();
-  const { errors, validate } = useZodForm(signUpSchema);
+  const { errors, validate } = useValidateForm(signUpSchema);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

@@ -4,7 +4,7 @@ import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import type React from 'react';
 import { z } from 'zod';
-import { useZodForm } from './parse.form';
+import { useValidateForm } from '../../utils/validate.form';
 
 type RestoreFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -14,7 +14,7 @@ const restoreSchema = z.object({
 
 const RestoreForm = (props: RestoreFormProps) => {
   const navigate = useNavigate();
-  const { errors, validate } = useZodForm(restoreSchema);
+  const { errors, validate } = useValidateForm(restoreSchema);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

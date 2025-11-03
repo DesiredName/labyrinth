@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router';
 import { clsxtw } from '../../utils/clsxtw';
 import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
-import { useZodForm } from './parse.form';
+import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
@@ -14,7 +14,7 @@ const signInSchema = z.object({
 
 const SignInForm = (props: SignInFormProps) => {
   const navigate = useNavigate();
-  const { errors, validate } = useZodForm(signInSchema);
+  const { errors, validate } = useValidateForm(signInSchema);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
