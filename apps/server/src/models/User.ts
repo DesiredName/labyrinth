@@ -6,7 +6,6 @@ type UserAttributes = {
   email: string;
   username: string;
   password: string;
-  salt: string;
   createdAt?: Date;
   updatedAt?: Date;
 };
@@ -15,7 +14,7 @@ type UserCreationAttributes = Optional<
   UserAttributes,
   'id' | 'createdAt' | 'updatedAt'
 >;
-type UserSafeAttributes = Omit<UserAttributes, 'password' | 'salt'>;
+type UserSafeAttributes = Omit<UserAttributes, 'id' | 'password'>;
 
 class User extends Model<UserAttributes, UserCreationAttributes> {}
 
@@ -40,10 +39,6 @@ function initUser(db: Sequelize) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      salt: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     { sequelize: db },
   );
@@ -55,9 +50,10 @@ function sanitizeUser(user: User | null): UserSafeAttributes | null {
   }
 
   const json = user.toJSON() as UserSafeAttributes;
+  delete (json as any).id;
   delete (json as any).password;
-  delete (json as any).salt;
   return json;
 }
 
 export { User, initUser, sanitizeUser };
+export { type UserSafeAttributes };

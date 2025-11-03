@@ -38,6 +38,6 @@ const options = {
 
 const db = new Sequelize(options);
 
-initModels(db)
+initModels(db);
 
 export { db };

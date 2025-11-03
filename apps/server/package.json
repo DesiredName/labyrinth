@@ -7,12 +7,19 @@
   },
   "dependencies": {
     "@webx/utils": "0.0.1",
+    "argon2": "^0.44.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "es-cookie": "^1.5.0",
     "express": "latest",
+    "jsonwebtoken": "^9.0.2",
     "mssql": "latest",
     "sequelize": "latest",
     "zod": "latest"
-  }, 
+  },
   "devDependencies": {
-    "@types/express": "latest"
+    "@types/cors": "^2.8.19",
+    "@types/express": "latest",
+    "@types/jsonwebtoken": "^9.0.10"
   }
 }
