@@ -20,7 +20,7 @@ interface IAuthContext {
 
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = (props) => {
+const AuthProvider: React.FC<{ children: ReactNode }> = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setisLoading] = useState(true);
 
@@ -113,4 +113,4 @@ const useAuth = (): IAuthContext => {
   return context;
 };
 
-export { useAuth };
+export { AuthProvider, useAuth };

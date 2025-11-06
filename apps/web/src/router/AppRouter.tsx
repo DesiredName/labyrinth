@@ -46,11 +46,23 @@ const AppRouter = () => {
             path="dashboard"
             element={<ProtectedRoute element={<Dashboard />} />}
           />
-          <Route path="email-lists" element={<EmailLists />} />
+          <Route
+            path="email-lists"
+            element={<ProtectedRoute element={<EmailLists />} />}
+          />
           <Route path="report">
-            <Route path="compain-profit" element={<CompainProfit />} />
-            <Route path="country-profit" element={<CountryProfit />} />
-            <Route path="date-profit" element={<DateProfit />} />
+            <Route
+              path="compain-profit"
+              element={<ProtectedRoute element={<CompainProfit />} />}
+            />
+            <Route
+              path="country-profit"
+              element={<ProtectedRoute element={<CountryProfit />} />}
+            />
+            <Route
+              path="date-profit"
+              element={<ProtectedRoute element={<DateProfit />} />}
+            />
           </Route>
         </Route>
 

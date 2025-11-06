@@ -34,11 +34,11 @@ type ButtonVariant = NonNullable<
   VariantProps<typeof buttonVariants>['variant']
 >;
 
-export interface ButtonProps
+export interface IButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
   ({ uiSize, variant, className, children, ...props }, ref) => {
     const classes = clsxtw(buttonVariants({ uiSize, variant }), className);
     return (

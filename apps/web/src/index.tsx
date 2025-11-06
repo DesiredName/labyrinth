@@ -4,11 +4,14 @@ import '@webx/ui/index.css';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeSwitchProvider } from './context/ThemeSwitchContext';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <AuthProvider>
-    <BrowserRouter>
-      <AppRouter />
-    </BrowserRouter>
-  </AuthProvider>,
+  <ThemeSwitchProvider>
+    <AuthProvider>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
+    </AuthProvider>
+  </ThemeSwitchProvider>,
 );

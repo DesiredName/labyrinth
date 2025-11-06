@@ -1,10 +1,14 @@
 import { Outlet } from 'react-router';
 import { BrandLogo } from '../components/BrandLogo';
+import { ThemeSwitch } from '../components/ThemeSwitch';
 
 const AuthLayout = () => (
   <div className="min-h-screen min-w-screen flex flex-col gap-3">
-
     <title>WebX | Authorization</title>
+
+    <div className="absolute top-3 right-3">
+      <ThemeSwitch />
+    </div>
 
     <header className="min-h-60 flex justify-center items-center">
       <BrandLogo className="text-4xl" />
@@ -15,11 +19,10 @@ const AuthLayout = () => (
     </main>
 
     <footer className="mt-auto mb-0 h-10 text-center">
-      <a href="/terms.html" target="_blank" className='text-gray-500'>
+      <a href="/terms.html" target="_blank" className="text-gray-500">
         Terms & Conditions
       </a>
     </footer>
-    
   </div>
 );
 

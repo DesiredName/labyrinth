@@ -7,7 +7,14 @@ declare const buttonVariants: (props?: ({
     variant?: "primary" | "secondary" | "outline" | null | undefined;
 } & ClassProp) | undefined) => string;
 
-declare interface InputProps extends React_2.InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {
+declare const iconVariants: (props?: ({
+    uiSize?: "xs" | "sm" | "base" | "lg" | "xl" | null | undefined;
+} & ClassProp) | undefined) => string;
+
+declare interface IIconProps extends React_2.AllHTMLAttributes<HTMLDivElement>, VariantProps<typeof iconVariants> {
+}
+
+declare interface IInputProps extends React_2.InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {
 }
 
 declare const inputVariants: (props?: ({
@@ -23,6 +30,10 @@ export declare type UIButtonSize = NonNullable<VariantProps<typeof buttonVariant
 
 export declare type UIButtonVariant = NonNullable<VariantProps<typeof buttonVariants>['variant']>;
 
-export declare const UIInput: React_2.ForwardRefExoticComponent<InputProps & React_2.RefAttributes<HTMLInputElement>>;
+export declare const UIIcon: React_2.ForwardRefExoticComponent<IIconProps & React_2.RefAttributes<HTMLDivElement>>;
+
+export declare type UIIconSize = NonNullable<VariantProps<typeof iconVariants>['uiSize']>;
+
+export declare const UIInput: React_2.ForwardRefExoticComponent<IInputProps & React_2.RefAttributes<HTMLInputElement>>;
 
 export { }

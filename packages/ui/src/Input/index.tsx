@@ -19,11 +19,11 @@ const inputVariants = cva('inline-block border border-gray-200 rounded-md', {
 
 type InputSize = NonNullable<VariantProps<typeof inputVariants>['uiSize']>;
 
-export interface InputProps
+export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {}
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, IInputProps>(
   ({ uiSize, className, size, ...props }, ref) => {
     const classes = clsxtw(inputVariants({ uiSize }), className);
     return <input ref={ref} size={size ?? 1} className={classes} {...props} />;

@@ -1,4 +1,10 @@
-import "./index.css";
+import './index.css';
 
-export { Button as UIButton, type ButtonSize as UIButtonSize, type ButtonVariant as UIButtonVariant, type ButtonProps as UIButtonProps } from "./Button";
-export { Input as UIInput } from "./Input";
+export {
+  Button as UIButton,
+  type ButtonSize as UIButtonSize,
+  type ButtonVariant as UIButtonVariant,
+  type IButtonProps as UIButtonProps,
+} from './Button';
+export { Input as UIInput } from './Input';
+export { Icon as UIIcon, type IconSize as UIIconSize } from './Icon';

@@ -1,0 +1,16 @@
+function IconLightTheme() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      width="24"
+      viewBox="0 0 32 32"
+      fill="currentColor"
+      className="pointer-events-none"
+    >
+      <path d="m30.706 19.721a1 1 0 0 0 -1.042-.234 13.423 13.423 0 0 1 -17.151-17.152 1 1 0 0 0 -1.276-1.278 15.214 15.214 0 0 0 -5.727 3.623 15.422 15.422 0 0 0 21.81 21.81 15.214 15.214 0 0 0 3.623-5.728 1 1 0 0 0 -.237-1.041z" />
+    </svg>
+  );
+}
+
+export { IconLightTheme };
