@@ -12,9 +12,12 @@ import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
 import { AnimatePresence } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
+import { SignOut } from '../pages/auth/signout';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const AppRouter = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
 
   return (
@@ -34,11 +37,15 @@ const AppRouter = () => {
         <Route element={<AuthLayout />}>
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="signout" element={<SignOut />} />
           <Route path="restore-password" element={<RestorePassword />} />
         </Route>
 
         <Route element={<BaseLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route
+            path="dashboard"
+            element={<ProtectedRoute element={<Dashboard />} />}
+          />
           <Route path="email-lists" element={<EmailLists />} />
           <Route path="report">
             <Route path="compain-profit" element={<CompainProfit />} />

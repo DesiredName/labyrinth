@@ -1,8 +1,10 @@
-import express from 'express'
-import { router as AuthRoutes } from "./auth.router.ts";
+import express from 'express';
+import { router as AuthRouter } from './auth.router.ts';
+import { router as UserRouter } from './user.router.ts';
 
 const router = express.Router();
 
-router.use('/auth', AuthRoutes);
+router.use('/auth', AuthRouter);
+router.use('/user', UserRouter);
 
-export { router }
+export { router };

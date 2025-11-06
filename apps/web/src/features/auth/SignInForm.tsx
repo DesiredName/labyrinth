@@ -4,20 +4,25 @@ import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
+import { useAuth } from '../../context/AuthContext';
+import { useState } from 'react';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
 
 const signInSchema = z.object({
   email: z.email('Invalid email address'),
-  password: z.string().min(12, 'Password must be at least 12 characters'),
+  password: z.string().nonempty(),
 });
 
 const SignInForm = (props: SignInFormProps) => {
   const navigate = useNavigate();
+  const { signin } = useAuth();
   const { errors, validate } = useValidateForm(signInSchema);
+  const [pageError, setPageError] = useState<boolean>(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setPageError(false);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -27,13 +32,13 @@ const SignInForm = (props: SignInFormProps) => {
       return;
     }
 
-    console.log('ok');
-    // const res = await fetch('/api/signup', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
+    const response = await signin(result.data.email, result.data.password);
 
-    // if (res.ok) navigate('/dashboard');
+    if (response) {
+      navigate('/dashboard');
+    } else {
+      setPageError(true);
+    }
   }
 
   return (
@@ -73,8 +78,11 @@ const SignInForm = (props: SignInFormProps) => {
       <UIButton type="submit" className="col-span-2">
         Sign in
       </UIButton>
-
-      <br></br>
+      {pageError && (
+        <div className="col-span-2 text-right text-red-700 text-sm">
+          Failed to sign in
+        </div>
+      )}
 
       <div className="text-center text-sm col-span-2">
         <span className="text-gray-500 ">Don't have an account?</span>&nbsp;

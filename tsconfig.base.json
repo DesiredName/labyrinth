@@ -16,8 +16,8 @@
       "@ui/*": [
         "packages/ui/src/*"
       ],
-      "@utils/*": [
-        "packages/utils/src/*"
+      "@shared/*": [
+        "packages/shared/src/*"
       ]
     }
   },
@@ -26,7 +26,7 @@
       "path": "packages/ui"
     },
     {
-      "path": "packages/utils"
+      "path": "packages/shared"
     },
     {
       "path": "packages/config"

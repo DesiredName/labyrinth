@@ -61,8 +61,6 @@ const RestoreForm = (props: RestoreFormProps) => {
         Submit
       </UIButton>
 
-      <br></br>
-
       <div className="text-center text-sm col-span-2">
         <span className="text-gray-500 ">Already have an account?</span>&nbsp;
         <Link to="/signin">Sign in</Link>

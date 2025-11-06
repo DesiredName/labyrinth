@@ -4,14 +4,14 @@ import { verifyAuthCookie } from '../utils/assignAuthCookie.ts';
 import { wrpappedResponse } from '../utils/wrapperResponse.ts';
 
 function authMiddleware(req: Request, res: Response, next: NextFunction) {
-  const user = verifyAuthCookie(req);
-  if (user == null) {
-    wrpappedResponse(res, false, undefined, 401);
+  const probablyUser = verifyAuthCookie(req);
+  if (probablyUser == null) {
     logError('Unauthorized access', {
       url: req.originalUrl,
       method: req.method,
       body: req.body ?? {},
     });
+    wrpappedResponse(res, false, undefined, 401);
   } else {
     next();
   }

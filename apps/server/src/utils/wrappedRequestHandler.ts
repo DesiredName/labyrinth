@@ -1,51 +1,24 @@
-import { ZodError } from "zod";
-import { logError } from "../services/log.srv.ts";
-import type { MaybeAsyncRequestHandler } from "./asyncRequestHandler.ts";
+import { logError } from '../services/log.srv.ts';
+import type { Request, Response, NextFunction } from 'express';
 
-class APIWrappedError extends Error {
-    details?: string;
-
-    constructor(message: string, details?: string) {
-        super(message);
-
-        this.details = details;
-
-        Object.setPrototypeOf(this, new.target.prototype);
-    }
-}
+type MaybeAsyncRequestHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => void | Promise<void>;
 
 function wrappedRequestHandler(
-    handler: MaybeAsyncRequestHandler,
-    msg?: string,
-    details?: string
+  handler: MaybeAsyncRequestHandler,
 ): MaybeAsyncRequestHandler {
-    return async (req, res, next) => {
-        try {
-            await handler(req, res, next);
-        } catch (err) {
-            let output = {};
-
-            switch (true) {
-                case err instanceof ZodError:
-                    const issues = err.issues.map((e) => e.message).join('; ');
-                    output = new APIWrappedError(msg ?? 'Zod Error', issues || details);
-                    break;
-                case err instanceof APIWrappedError:
-                    output = err;
-                    break;
-                case err instanceof Error:
-                    output = new APIWrappedError(msg ?? err.message ?? 'Unknown error', details ?? err.message);
-                    break;
-                default:
-                    output = new APIWrappedError('Unknown error', details)
-                    break;
-            }
-
-            logError(msg ?? 'Error occured', output);
-
-            res.json(output)
-        }
+  return async (req, res, next) => {
+    try {
+      await handler(req, res, next);
+    } catch (err) {
+      logError('Error occured', err);
+      next(err);
     }
+  };
 }
 
-export { wrappedRequestHandler, APIWrappedError }
+export { wrappedRequestHandler };
+export { type MaybeAsyncRequestHandler };

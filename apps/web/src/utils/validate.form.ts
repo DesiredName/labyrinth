@@ -2,10 +2,20 @@ import { useState } from 'react';
 import { z } from 'zod';
 import type { ZodObject } from 'zod';
 
+type ValidationResultType<T> =
+  | {
+      success: true;
+      data: T;
+    }
+  | {
+      success: false;
+      errors: Record<string, string>;
+    };
+
 function useValidateForm<T extends ZodObject<any>>(schema: T) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  function validate(formData: FormData) {
+  function validate(formData: FormData): ValidationResultType<z.infer<T>> {
     const data = Object.fromEntries(formData.entries());
     const result = schema.safeParse(data);
 

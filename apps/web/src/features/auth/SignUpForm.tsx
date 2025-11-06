@@ -5,6 +5,8 @@ import { UIButton, UIInput } from '@webx/ui';
 import type React from 'react';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
+import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -16,10 +18,13 @@ const signUpSchema = z.object({
 
 const SignUpForm = (props: SignUpFormProps) => {
   const navigate = useNavigate();
+  const { signup } = useAuth();
   const { errors, validate } = useValidateForm(signUpSchema);
+  const [pageError, setPageError] = useState<boolean>(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setPageError(false);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -29,13 +34,17 @@ const SignUpForm = (props: SignUpFormProps) => {
       return;
     }
 
-    console.log('ok');
-    // const res = await fetch('/api/signup', {
-    //   method: 'POST',
-    //   body: formData,
-    // });
+    const response = await signup(
+      result.data.username,
+      result.data.email,
+      result.data.password,
+    );
 
-    // if (res.ok) navigate('/dashboard');
+    if (response) {
+      navigate('/dashboard');
+    } else {
+      setPageError(true);
+    }
   }
 
   return (
@@ -89,8 +98,11 @@ const SignUpForm = (props: SignUpFormProps) => {
       <UIButton type="submit" className="col-span-2">
         Sign up
       </UIButton>
-
-      <br></br>
+      {pageError && (
+        <div className="col-span-2 text-right text-red-700 text-sm">
+          Failed to sign up
+        </div>
+      )}
 
       <div className="text-center text-sm col-span-2">
         <span className="text-gray-500 ">Already have an account?</span>&nbsp;
