@@ -8,11 +8,7 @@ type BrandLogoProps = React.ComponentPropsWithoutRef<'div'>;
 
 const ThemeSwitch = React.forwardRef<HTMLDivElement, BrandLogoProps>(
   ({ className, ...props }: BrandLogoProps, ref) => {
-    const { theme, setTheme } = useThemeSwitch();
-
-    const handleSetNextTheme = () => {
-      setTheme(theme === 'dark' ? 'light' : 'dark');
-    };
+    const { theme, handleSetNextTheme } = useThemeSwitch();
 
     return (
       <UIIcon ref={ref} {...props} onClick={handleSetNextTheme}>

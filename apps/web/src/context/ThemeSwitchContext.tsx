@@ -12,6 +12,7 @@ type AppThemeSwitchType = (typeof AppThemeSwitch)[number];
 interface IThemeSwitchContext {
   theme: AppThemeSwitchType;
   setTheme: (theme: AppThemeSwitchType) => void;
+  handleSetNextTheme: () => void;
 }
 
 const ThemeSwitchContext = createContext<IThemeSwitchContext | undefined>(
@@ -21,8 +22,13 @@ const ThemeSwitchContext = createContext<IThemeSwitchContext | undefined>(
 const ThemeSwitchProvider: React.FC<{ children: ReactNode }> = (props) => {
   const themeStorageKey = 'app-theme';
   const [theme, setTheme] = useState<AppThemeSwitchType>('system');
+
   const updateTheme = () =>
     (document.body.parentElement!.dataset.theme = theme);
+
+  const handleSetNextTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
 
   useEffect(() => {
     const stored = window.localStorage.getItem(
@@ -42,7 +48,9 @@ const ThemeSwitchProvider: React.FC<{ children: ReactNode }> = (props) => {
   }, [theme]);
 
   return (
-    <ThemeSwitchContext.Provider value={{ theme, setTheme }}>
+    <ThemeSwitchContext.Provider
+      value={{ theme, setTheme, handleSetNextTheme }}
+    >
       {props.children}
     </ThemeSwitchContext.Provider>
   );
