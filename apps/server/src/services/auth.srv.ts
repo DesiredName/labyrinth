@@ -1,5 +1,4 @@
 import { sanitizeUser, User } from '../models/User.ts';
-import z from 'zod';
 import argon2 from 'argon2';
 
 class AuthService {
@@ -26,15 +25,4 @@ class AuthService {
   }
 }
 
-const SignupUserParams = z.object({
-  email: z.email().nonempty(),
-  username: z.string().nonempty(),
-  password: z.string().nonempty(),
-});
-
-const SigninUserParams = z.object({
-  email: z.email().nonempty(),
-  password: z.string().nonempty(),
-});
-
-export { SignupUserParams, SigninUserParams, AuthService };
+export { AuthService };

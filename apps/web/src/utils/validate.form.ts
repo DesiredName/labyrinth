@@ -22,6 +22,7 @@ function useValidateForm<T extends ZodObject<any>>(schema: T) {
     if (!result.success) {
       const tree = z.treeifyError(result.error);
       const mapped: Record<string, string> = {};
+
       if (tree.errors && tree.properties) {
         for (const key in tree.properties) {
           const error = tree.properties[key];
@@ -30,11 +31,14 @@ function useValidateForm<T extends ZodObject<any>>(schema: T) {
           }
         }
       }
+
       setErrors(mapped);
+
       return { success: false, errors: mapped };
     }
 
     setErrors({});
+
     return { success: true, data: result.data as z.infer<T> };
   }
 

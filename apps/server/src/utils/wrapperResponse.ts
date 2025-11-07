@@ -1,3 +1,4 @@
+import type { BaseAPIResponse } from '@webx/shared';
 import type { Response } from 'express';
 
 function wrpappedResponse(
@@ -11,7 +12,7 @@ function wrpappedResponse(
     success,
     data,
     meta,
-  });
+  } satisfies BaseAPIResponse<unknown, unknown>);
 }
 
 export { wrpappedResponse };

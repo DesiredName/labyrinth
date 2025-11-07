@@ -4,7 +4,7 @@ import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
-import { useAuth } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { useState } from 'react';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
@@ -16,7 +16,7 @@ const signInSchema = z.object({
 
 const SignInForm = (props: SignInFormProps) => {
   const navigate = useNavigate();
-  const { signin } = useAuth();
+  const { signin } = useAuthContext();
   const { errors, validate } = useValidateForm(signInSchema);
   const [pageError, setPageError] = useState<boolean>(false);
 
@@ -32,7 +32,7 @@ const SignInForm = (props: SignInFormProps) => {
       return;
     }
 
-    const response = await signin(result.data.email, result.data.password);
+    const response = await signin(result.data);
 
     if (response) {
       navigate('/dashboard');

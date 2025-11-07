@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router';
 import { AuthLayout } from '../layouts/auth.layout';
 import { BaseLayout } from '../layouts/base.layout';
@@ -12,13 +11,19 @@ import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
 import { AnimatePresence } from 'framer-motion';
-import { useAuth } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import { SignOut } from '../pages/auth/signout';
 import ProtectedRoute from '../components/ProtectedRoute';
 
 const AppRouter = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isInitialized } = useAuthContext();
   const location = useLocation();
+
+  if (isInitialized !== true) {
+    return (
+      <div className="absolute inset-0 flex justify-center items-center"></div>
+    );
+  }
 
   return (
     <AnimatePresence mode="wait">

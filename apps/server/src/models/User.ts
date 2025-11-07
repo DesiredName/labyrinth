@@ -1,20 +1,9 @@
 import { DataTypes, Model, Sequelize } from 'sequelize';
-import type { Optional } from 'sequelize';
-
-type UserAttributes = {
-  id: number;
-  email: string;
-  username: string;
-  password: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-};
-
-type UserCreationAttributes = Optional<
+import type {
   UserAttributes,
-  'id' | 'createdAt' | 'updatedAt'
->;
-type UserSafeAttributes = Omit<UserAttributes, 'id' | 'password'>;
+  UserCreationAttributes,
+  UserSafeAttributes,
+} from '@webx/shared';
 
 class User extends Model<UserAttributes, UserCreationAttributes> {}
 
