@@ -1,4 +1,5 @@
 import type {
+  CheckUserResponseType,
   SigninUserRequestType,
   SigninUserResponseType,
   SignupUserRequestType,
@@ -12,12 +13,13 @@ class ApiClient {
     this.baseURL = baseURL;
   }
 
-  async checkAuth(): Promise<boolean> {
-    const response = await fetch(`${this.baseURL}/auth/check`, {
+  async checkAuth() {
+    const res = await fetch(`${this.baseURL}/auth/check`, {
       method: 'POST',
       credentials: 'include',
     });
-    return response.ok === true;
+    const data = (await res.json()) as CheckUserResponseType;
+    return data;
   }
 
   async signin(creds: SigninUserRequestType) {

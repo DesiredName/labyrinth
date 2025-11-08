@@ -1,7 +1,9 @@
-const CompainProfit = () => (
-    <main>
-        Compain Profit Report
-    </main>
-)
+import { PageTransition } from '../../components/PageTransition';
 
-export { CompainProfit }
+const CompainProfit = () => (
+  <PageTransition>
+    <main>Compain Profit Report</main>
+  </PageTransition>
+);
+
+export { CompainProfit };

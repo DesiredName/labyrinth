@@ -6,9 +6,7 @@ const BaseLayout = () => (
   <div className="base-layout">
     <Topbar />
     <Sidebar />
-    <main>
-      <Outlet />
-    </main>
+    <Outlet />
   </div>
 );
 

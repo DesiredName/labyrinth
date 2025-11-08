@@ -14,6 +14,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useAuthContext } from '../context/AuthContext';
 import { SignOut } from '../pages/auth/signout';
 import ProtectedRoute from '../components/ProtectedRoute';
+import { UserProfile } from '../pages/auth/user-profile';
 
 const AppRouter = () => {
   const { isAuthenticated, isInitialized } = useAuthContext();
@@ -47,6 +48,10 @@ const AppRouter = () => {
         </Route>
 
         <Route element={<BaseLayout />}>
+          <Route
+            path="user-profile"
+            element={<ProtectedRoute element={<UserProfile />} />}
+          />
           <Route
             path="dashboard"
             element={<ProtectedRoute element={<Dashboard />} />}

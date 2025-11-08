@@ -1,7 +1,5 @@
-const DateProfit = () => (
-    <main>
-        Date Profit Report
-    </main>
-)
+import { PageTransition } from '../../components/PageTransition';
 
-export { DateProfit }
+const DateProfit = () => <PageTransition>Date Profit Report</PageTransition>;
+
+export { DateProfit };

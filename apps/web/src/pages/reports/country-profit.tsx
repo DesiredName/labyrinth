@@ -1,7 +1,7 @@
-const CountryProfit = () => (
-    <main>
-        Country Profit Report
-    </main>
-)
+import { PageTransition } from '../../components/PageTransition';
 
-export { CountryProfit }
+const CountryProfit = () => (
+  <PageTransition>Country Profit Report</PageTransition>
+);
+
+export { CountryProfit };

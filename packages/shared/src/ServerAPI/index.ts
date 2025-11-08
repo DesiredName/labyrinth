@@ -32,6 +32,10 @@ type SigninUserResponseType = BaseAPIResponse<
   unknown
 >;
 
+type CheckUserResponseType = BaseAPIResponse<
+  UserSafeAttributes | null,
+  unknown
+>;
 //
 
 export { SignupUserRequest, SigninUserRequest };
@@ -41,4 +45,5 @@ export type {
   SignupUserResponseType,
   SigninUserRequestType,
   SigninUserResponseType,
+  CheckUserResponseType,
 };

@@ -13,9 +13,11 @@ const useAuth = (apiClient: ApiClient) => {
   const [user, setUser] = useState<UserSafeAttributes | null>(null);
 
   const checkAuth = useCallback(async () => {
+    setIsInitialized(false);
     try {
       const response = await apiClient.checkAuth();
-      setIsAuthenticated(response);
+      setIsAuthenticated(response.success);
+      setUser(response.data);
       return response;
     } catch (error) {
       setIsAuthenticated(false);
@@ -29,9 +31,9 @@ const useAuth = (apiClient: ApiClient) => {
     async (credentials: SigninUserRequestType) => {
       setIsLoading(true);
       try {
-        const result = await apiClient.signin(credentials);
-        setIsAuthenticated(result.success);
-        setUser(result.data);
+        const response = await apiClient.signin(credentials);
+        setIsAuthenticated(response.success);
+        setUser(response.data);
         return true;
       } catch (ex) {
         setIsAuthenticated(false);
@@ -48,9 +50,9 @@ const useAuth = (apiClient: ApiClient) => {
     async (userData: SignupUserRequestType) => {
       setIsLoading(true);
       try {
-        const result = await apiClient.signup(userData);
-        setIsAuthenticated(result.success);
-        setUser(result.data);
+        const response = await apiClient.signup(userData);
+        setIsAuthenticated(response.success);
+        setUser(response.data);
         return true;
       } catch (ex) {
         setIsAuthenticated(false);
@@ -84,6 +86,7 @@ const useAuth = (apiClient: ApiClient) => {
     signin,
     signup,
     signout,
+    user,
   };
 };
 

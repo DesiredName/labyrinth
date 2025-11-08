@@ -36,7 +36,7 @@ const signOut = wrappedRequestHandler(async (req: Request, res: Response) => {
 const check = wrappedRequestHandler(async (req: Request, res: Response) => {
   const probablyUser = verifyAuthCookie(req);
   const user = await UserService.getProfile(probablyUser?.email);
-  wrpappedResponse(res, user != null, {}, 401);
+  wrpappedResponse(res, user != null, user, 401);
 });
 
 export { signIn, signUp, signOut, check };
