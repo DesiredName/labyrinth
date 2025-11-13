@@ -6,7 +6,7 @@ import { RestorePassword } from '../pages/auth/restore-password';
 import { SignIn } from '../pages/auth/signin';
 import { SignUp } from '../pages/auth/signup';
 import { Dashboard } from '../pages/dashboard';
-import { EmailLists } from '../pages/email-lists';
+import { Compaings } from '../pages/compaings';
 import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
@@ -57,8 +57,8 @@ const AppRouter = () => {
             element={<ProtectedRoute element={<Dashboard />} />}
           />
           <Route
-            path="email-lists"
-            element={<ProtectedRoute element={<EmailLists />} />}
+            path="compaings"
+            element={<ProtectedRoute element={<Compaings />} />}
           />
           <Route path="report">
             <Route

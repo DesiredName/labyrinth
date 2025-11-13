@@ -1,33 +1,68 @@
 import { NavLink } from 'react-router';
+import { UIMenu, type UIMenuProps } from '@webx/ui';
+import './index.css';
 
-const Sidebar = () => (
-  <aside className="sidebar">
-    <menu>
-      <li>
-        <NavLink to="/">Dashboard</NavLink>
-      </li>
-      <li>
-        <NavLink to="/email-lists">EMail Lists</NavLink>
-      </li>
-      <li>
-        Reports
-        <ul>
-          <li>
-            <NavLink to="/report/compain-profit"> Compain Profit</NavLink>
-          </li>
-          <li>
-            <NavLink to="/report/country-profit">Country Profit</NavLink>
-          </li>
-          <li>
-            <NavLink to="/report/date-profit">Date Profit</NavLink>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <NavLink to="/signout">Logout</NavLink>
-      </li>
-    </menu>
-  </aside>
-);
+const Sidebar = () => {
+  const props: UIMenuProps = {
+    items: [
+      { to: () => <NavLink to="/">Dashboard</NavLink> },
+      { to: () => <NavLink to="/compaings">Compaings</NavLink> },
+      {
+        to: () => `Reports`,
+        items: [
+          {
+            items: [
+              {
+                to: () => (
+                  <NavLink to="/report/compain-profit">Compain Profit</NavLink>
+                ),
+              },
+              {
+                to: () => (
+                  <NavLink to="/report/country-profit">Country Profit</NavLink>
+                ),
+              },
+              {
+                to: () => (
+                  <NavLink to="/report/date-profit">Date Profit</NavLink>
+                ),
+              },
+            ],
+          },
+        ],
+      },
+      {
+        to: () => `Settings`,
+        items: [
+          {
+            items: [
+              {
+                to: () => (
+                  <NavLink to="/settings/profile">User Settings</NavLink>
+                ),
+                items: [
+                  {
+                    items: [
+                      {
+                        to: () => (
+                          <NavLink to="/settings/profile">Profile</NavLink>
+                        ),
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        to: () => <NavLink to="/signout">Logout</NavLink>,
+      },
+    ],
+  };
+
+  return <UIMenu className="element-sidebar" {...props} />;
+};
 
 export { Sidebar };

@@ -1,4 +1,5 @@
 import { ClassProp } from 'class-variance-authority/types';
+import { default as default_2 } from 'react';
 import * as React_2 from 'react';
 import { VariantProps } from 'class-variance-authority';
 
@@ -15,6 +16,11 @@ declare interface IIconProps extends React_2.AllHTMLAttributes<HTMLDivElement>, 
 }
 
 declare interface IInputProps extends React_2.InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof inputVariants> {
+}
+
+declare interface IMenuEntry {
+    to: () => default_2.ReactNode;
+    items?: UIMenuProps[];
 }
 
 declare const inputVariants: (props?: ({
@@ -35,5 +41,11 @@ export declare const UIIcon: React_2.ForwardRefExoticComponent<IIconProps & Reac
 export declare type UIIconSize = NonNullable<VariantProps<typeof iconVariants>['uiSize']>;
 
 export declare const UIInput: React_2.ForwardRefExoticComponent<IInputProps & React_2.RefAttributes<HTMLInputElement>>;
+
+export declare const UIMenu: default_2.ForwardRefExoticComponent<UIMenuProps & default_2.RefAttributes<HTMLMenuElement>>;
+
+export declare interface UIMenuProps extends default_2.MenuHTMLAttributes<HTMLMenuElement> {
+    items: IMenuEntry[];
+}
 
 export { }

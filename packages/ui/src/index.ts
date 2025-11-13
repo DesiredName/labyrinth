@@ -8,3 +8,4 @@ export {
 } from './Button';
 export { Input as UIInput } from './Input';
 export { Icon as UIIcon, type IconSize as UIIconSize } from './Icon';
+export { Menu as UIMenu, type IMenuProps as UIMenuProps } from './Menu';
