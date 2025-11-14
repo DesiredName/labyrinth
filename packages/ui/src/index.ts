@@ -1,11 +1,12 @@
 import './index.css';
 
-export {
-  Button as UIButton,
-  type ButtonSize as UIButtonSize,
-  type ButtonVariant as UIButtonVariant,
-  type IButtonProps as UIButtonProps,
-} from './Button';
-export { Input as UIInput } from './Input';
-export { Icon as UIIcon, type IconSize as UIIconSize } from './Icon';
-export { Menu as UIMenu, type IMenuProps as UIMenuProps } from './Menu';
+export * from './theme';
+export * from './ThemeProvider';
+
+export * from './Button/index';
+export * from './Input/index';
+export * from './Icon/index';
+export * from './Menu/index';
+
+export * from './themes/dark';
+export * from './themes/bright';

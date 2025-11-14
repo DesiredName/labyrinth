@@ -22,11 +22,11 @@ const iconVariants = cva(
 
 type IconSize = NonNullable<VariantProps<typeof iconVariants>['uiSize']>;
 
-export interface IIconProps
+interface UIIconProps
   extends React.AllHTMLAttributes<HTMLDivElement>,
     VariantProps<typeof iconVariants> {}
 
-export const Icon = React.forwardRef<HTMLDivElement, IIconProps>(
+const UIIcon = React.forwardRef<HTMLDivElement, UIIconProps>(
   ({ uiSize, className, children, ...props }, ref) => {
     const classes = clsxtw(iconVariants({ uiSize }), className);
 
@@ -38,6 +38,7 @@ export const Icon = React.forwardRef<HTMLDivElement, IIconProps>(
   },
 );
 
-Icon.displayName = 'Icon';
+UIIcon.displayName = 'Icon';
 
-export { iconVariants, type IconSize };
+export { UIIcon, iconVariants };
+export type { UIIconProps, IconSize };

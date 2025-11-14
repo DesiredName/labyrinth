@@ -29,6 +29,7 @@
     "class-variance-authority": "latest",
     "clsx": "latest",
     "styled-components": "latest",
-    "tailwindcss": "latest"
+    "tailwindcss": "latest",
+    "tailwind-merge": "latest"
   }
 }

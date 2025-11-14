@@ -1,13 +1,3 @@
-:root[data-theme='dark'] {
-  filter: invert(0.95) hue-rotate(45deg);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    filter: invert(0.9) hue-rotate(180deg);
-  }
-}
-
 a {
   @apply hover:underline underline-offset-2;
 }

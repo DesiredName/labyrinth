@@ -9,22 +9,26 @@ import React, {
 const AppThemeSwitch = ['light', 'dark', 'system'] as const;
 type AppThemeSwitchType = (typeof AppThemeSwitch)[number];
 
-interface IThemeSwitchContext {
+interface UIThemeSwitchContext {
   theme: AppThemeSwitchType;
   setTheme: (theme: AppThemeSwitchType) => void;
   handleSetNextTheme: () => void;
 }
 
-const ThemeSwitchContext = createContext<IThemeSwitchContext | undefined>(
+const ThemeSwitchContext = createContext<UIThemeSwitchContext | undefined>(
   undefined,
 );
 
-const ThemeSwitchProvider: React.FC<{ children: ReactNode }> = (props) => {
-  const themeStorageKey = 'app-theme';
+const ThemeSwitchProvider: React.FC<{
+  themeStorageKey?: string;
+  children: ReactNode;
+}> = (props) => {
+  const themeStorageKey = props.themeStorageKey ?? 'app-theme';
   const [theme, setTheme] = useState<AppThemeSwitchType>('system');
 
-  const updateTheme = () =>
-    (document.body.parentElement!.dataset.theme = theme);
+  const updateTheme = () => {
+    document.body.parentElement!.dataset.theme = theme;
+  };
 
   const handleSetNextTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -56,7 +60,7 @@ const ThemeSwitchProvider: React.FC<{ children: ReactNode }> = (props) => {
   );
 };
 
-const useThemeSwitch = (): IThemeSwitchContext => {
+const useThemeSwitch = (): UIThemeSwitchContext => {
   const context = useContext(ThemeSwitchContext);
   if (!context) {
     throw new Error('useTheme must be used within an ThemeProvider');

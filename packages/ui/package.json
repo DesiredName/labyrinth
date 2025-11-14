@@ -6,13 +6,15 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "types": "./dist/index.es.s.ts"
+      "types": "./dist/index.es.d.ts"
     },
     "./index.css": "./dist/index.css"
   },
   "peerDependencies": {
     "react": "latest",
-    "styled-components": "latest"
+    "styled-components": "latest",
+    "tailwindcss": "latest",
+    "tailwind-merge": "latest"
   },
   "scripts": {
     "dev": "vite build -w"

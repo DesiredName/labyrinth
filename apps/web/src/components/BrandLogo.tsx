@@ -13,7 +13,7 @@ const BrandLogo = React.forwardRef<HTMLDivElement, BrandLogoProps>(
       )}
       {...props}
     >
-      Web<span className="text-red-700">X</span>
+      Web<span className="text-red-700 dark:text-amber-600">X</span>
     </div>
   ),
 );

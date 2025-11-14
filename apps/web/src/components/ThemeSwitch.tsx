@@ -1,5 +1,5 @@
 import React from 'react';
-import { useThemeSwitch } from '../context/ThemeSwitchContext';
+import { useThemeSwitch } from '@webx/ui';
 import { IconDarkTheme } from './Icons/dark-theme';
 import { IconLightTheme } from './Icons/light-theme';
 import { UIIcon } from '@webx/ui';

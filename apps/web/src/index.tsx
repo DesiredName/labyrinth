@@ -4,7 +4,7 @@ import '@webx/ui/index.css';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router';
 import { AuthProvider } from './context/AuthContext';
-import { ThemeSwitchProvider } from './context/ThemeSwitchContext';
+import { ThemeSwitchProvider } from '@webx/ui';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeSwitchProvider>

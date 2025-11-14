@@ -1,4 +1,3 @@
-import { useThemeSwitch } from '../../context/ThemeSwitchContext';
 import { BrandLogo } from '../BrandLogo';
 import { ThemeSwitch } from '../ThemeSwitch';
 
