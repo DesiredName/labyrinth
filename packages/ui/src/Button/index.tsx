@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { clsxtw } from '../utils/clsxtw';
 
@@ -21,9 +21,9 @@ const buttonVariants = cva(buttonBase, {
           border border-[var(--color-btn-border)]
           hover:bg-[var(--color-btn-bg-hover)]
           hover:border-[var(--color-btn-border-hover)]
-          bg-gray-700 hover:bg-gray-600
-          dark:bg-amber-700 dark:hover:bg-amber-600
         `,
+      // bg-gray-700 hover:bg-gray-600
+      // dark:bg-amber-700 dark:hover:bg-amber-600
     },
   },
   defaultVariants: {
@@ -41,7 +41,7 @@ interface UIButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
-const UIButton = React.forwardRef<HTMLButtonElement, UIButtonProps>(
+const UIButton = forwardRef<HTMLButtonElement, UIButtonProps>(
   ({ uiSize, variant, className, children, ...props }, ref) => {
     const classes = clsxtw(buttonVariants({ uiSize, variant }), className);
     return (

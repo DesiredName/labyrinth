@@ -12,6 +12,14 @@
   },
   "peerDependencies": {
     "react": "latest",
+    "react-dom": "latest",
+    "styled-components": "latest",
+    "tailwindcss": "latest",
+    "tailwind-merge": "latest"
+  },
+  "devDependencies": {
+    "react": "latest",
+    "react-dom": "latest",
     "styled-components": "latest",
     "tailwindcss": "latest",
     "tailwind-merge": "latest"
@@ -21,8 +29,5 @@
   },
   "bundleDependencies": [
     "@webx/ui"
-  ],
-  "dependencies": {
-    "tailwind-merge": "latest"
-  }
+  ]
 }

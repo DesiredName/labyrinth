@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { clsxtw } from '../utils/clsxtw';
 
@@ -23,7 +23,7 @@ interface UIInputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {}
 
-const UIInput = React.forwardRef<HTMLInputElement, UIInputProps>(
+const UIInput = forwardRef<HTMLInputElement, UIInputProps>(
   ({ uiSize, className, size, ...props }, ref) => {
     const classes = clsxtw(inputVariants({ uiSize }), className);
     return <input ref={ref} size={size ?? 1} className={classes} {...props} />;

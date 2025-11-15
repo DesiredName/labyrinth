@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 interface UIMenuProps extends React.MenuHTMLAttributes<HTMLMenuElement> {
   items: UIMenuEntry[];
@@ -17,7 +17,7 @@ const MenuEntry = (props: UIMenuEntry) => (
   </li>
 );
 
-const UIMenu = React.forwardRef<HTMLMenuElement, UIMenuProps>(
+const UIMenu = forwardRef<HTMLMenuElement, UIMenuProps>(
   ({ items: entries, ...props }: UIMenuProps, ref) => {
     return (
       <menu ref={ref} {...props}>

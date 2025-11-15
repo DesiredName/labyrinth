@@ -1,17 +1,6 @@
 import ReactDOM from 'react-dom/client';
-import { AppRouter } from './router/AppRouter';
 import '@webx/ui/index.css';
 import './styles/index.css';
-import { BrowserRouter } from 'react-router';
-import { AuthProvider } from './context/AuthContext';
-import { ThemeSwitchProvider } from '@webx/ui';
+import { App } from './app';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <ThemeSwitchProvider>
-    <AuthProvider>
-      <BrowserRouter>
-        <AppRouter />
-      </BrowserRouter>
-    </AuthProvider>
-  </ThemeSwitchProvider>,
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);

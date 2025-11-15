@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { clsxtw } from '../utils/clsxtw';
 
@@ -26,7 +26,7 @@ interface UIIconProps
   extends React.AllHTMLAttributes<HTMLDivElement>,
     VariantProps<typeof iconVariants> {}
 
-const UIIcon = React.forwardRef<HTMLDivElement, UIIconProps>(
+const UIIcon = forwardRef<HTMLDivElement, UIIconProps>(
   ({ uiSize, className, children, ...props }, ref) => {
     const classes = clsxtw(iconVariants({ uiSize }), className);
 

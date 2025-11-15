@@ -1,71 +1,19 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  type ReactNode,
-} from 'react';
+import { createContext, useContext } from 'react';
+import type { Theme } from './theme';
 
-const AppThemeSwitch = ['light', 'dark', 'system'] as const;
-type AppThemeSwitchType = (typeof AppThemeSwitch)[number];
+const ThemeContext = createContext<Theme>({});
 
-interface UIThemeSwitchContext {
-  theme: AppThemeSwitchType;
-  setTheme: (theme: AppThemeSwitchType) => void;
-  handleSetNextTheme: () => void;
+export const useTheme = () => useContext(ThemeContext);
+
+interface Props {
+  theme?: Theme;
+  children: React.ReactNode;
 }
 
-const ThemeSwitchContext = createContext<UIThemeSwitchContext | undefined>(
-  undefined,
-);
-
-const ThemeSwitchProvider: React.FC<{
-  themeStorageKey?: string;
-  children: ReactNode;
-}> = (props) => {
-  const themeStorageKey = props.themeStorageKey ?? 'app-theme';
-  const [theme, setTheme] = useState<AppThemeSwitchType>('system');
-
-  const updateTheme = () => {
-    document.body.parentElement!.dataset.theme = theme;
-  };
-
-  const handleSetNextTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(
-      themeStorageKey,
-    ) as unknown as AppThemeSwitchType;
-    const parsed: AppThemeSwitchType = AppThemeSwitch.includes(stored)
-      ? stored
-      : 'system';
-
-    setTheme(parsed);
-    updateTheme();
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem(themeStorageKey, theme);
-    updateTheme();
-  }, [theme]);
-
+export const ThemeProvider = ({ theme = {}, children }: Props) => {
   return (
-    <ThemeSwitchContext.Provider
-      value={{ theme, setTheme, handleSetNextTheme }}
-    >
-      {props.children}
-    </ThemeSwitchContext.Provider>
+    <ThemeContext.Provider value={theme}>
+      <div style={theme as React.CSSProperties}>{children}</div>
+    </ThemeContext.Provider>
   );
 };
-
-const useThemeSwitch = (): UIThemeSwitchContext => {
-  const context = useContext(ThemeSwitchContext);
-  if (!context) {
-    throw new Error('useTheme must be used within an ThemeProvider');
-  }
-  return context;
-};
-
-export { ThemeSwitchProvider, useThemeSwitch };

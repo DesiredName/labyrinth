@@ -29,6 +29,8 @@ export default defineConfig({
       external: [
         'react',
         'react-dom',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
         'styled-components',
         'tailwindcss',
         'tailwind-merge',
@@ -36,7 +38,7 @@ export default defineConfig({
       output: {
         globals: {
           'react': 'react',
-          'react-dom': 'react-dom',
+          'react-dom': 'ReactDOM',
           'styled-components': 'styled-components',
         },
         assetFileNames: (asset) => {

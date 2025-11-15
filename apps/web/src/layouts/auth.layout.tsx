@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router';
 import { BrandLogo } from '../components/BrandLogo';
-import { ThemeSwitch } from '../components/ThemeSwitch';
+import { ThemeSwitcher } from '../components/ThemeSwitcher';
 
 const AuthLayout = () => (
   <div className="min-h-screen min-w-screen flex flex-col gap-3">
     <title>WebX | Authorization</title>
 
     <div className="absolute top-3 right-3">
-      <ThemeSwitch />
+      <ThemeSwitcher />
     </div>
 
     <header className="min-h-60 flex justify-center items-center">

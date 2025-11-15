@@ -1,14 +1,14 @@
 import React from 'react';
-import { useThemeSwitch } from '@webx/ui';
 import { IconDarkTheme } from './Icons/dark-theme';
 import { IconLightTheme } from './Icons/light-theme';
 import { UIIcon } from '@webx/ui';
+import { useThemeSwitcher } from '../hooks/useThemeSwitcher';
 
 type BrandLogoProps = React.ComponentPropsWithoutRef<'div'>;
 
-const ThemeSwitch = React.forwardRef<HTMLDivElement, BrandLogoProps>(
+const ThemeSwitcher = React.forwardRef<HTMLDivElement, BrandLogoProps>(
   ({ className, ...props }: BrandLogoProps, ref) => {
-    const { theme, handleSetNextTheme } = useThemeSwitch();
+    const { theme, handleSetNextTheme } = useThemeSwitcher();
 
     return (
       <UIIcon ref={ref} {...props} onClick={handleSetNextTheme}>
@@ -18,6 +18,6 @@ const ThemeSwitch = React.forwardRef<HTMLDivElement, BrandLogoProps>(
   },
 );
 
-ThemeSwitch.displayName = 'ThemeSwitch';
+ThemeSwitcher.displayName = 'ThemeSwitcher';
 
-export { ThemeSwitch };
+export { ThemeSwitcher };

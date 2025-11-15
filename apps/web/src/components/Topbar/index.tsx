@@ -1,5 +1,5 @@
 import { BrandLogo } from '../BrandLogo';
-import { ThemeSwitch } from '../ThemeSwitch';
+import { ThemeSwitcher } from '../ThemeSwitcher';
 
 const Topbar = () => {
   return (
@@ -8,7 +8,7 @@ const Topbar = () => {
         <BrandLogo className="text-2xl" />
       </div>
       <div>
-        <ThemeSwitch />
+        <ThemeSwitcher />
       </div>
     </nav>
   );
