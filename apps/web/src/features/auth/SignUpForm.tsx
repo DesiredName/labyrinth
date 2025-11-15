@@ -6,7 +6,7 @@ import type React from 'react';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 import { useState } from 'react';
-import { useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../provider/AuthProvider';
 
 type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
 

@@ -2,12 +2,12 @@ import { AppRouter } from './router/AppRouter';
 import '@webx/ui/index.css';
 import './styles/index.css';
 import { BrowserRouter } from 'react-router';
-import { AuthProvider } from './context/AuthContext';
 import { brightTheme, darkTheme, ThemeProvider } from '@webx/ui';
-import { useThemeSwitcher } from './hooks/useThemeSwitcher';
+import { AuthProvider } from './provider/AuthProvider';
+import { useThemeSwitcherContext } from './provider/ThemeSwitcherProvider';
 
 const App = () => {
-  const { theme } = useThemeSwitcher();
+  const { theme } = useThemeSwitcherContext();
 
   return (
     <ThemeProvider theme={theme === 'dark' ? darkTheme : brightTheme}>

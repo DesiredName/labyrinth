@@ -11,7 +11,7 @@ import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
 import { AnimatePresence } from 'framer-motion';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../provider/AuthProvider';
 import { SignOut } from '../pages/auth/signout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { UserProfile } from '../pages/auth/user-profile';

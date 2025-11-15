@@ -4,8 +4,8 @@ import './SignForm.css';
 import { UIButton, UIInput } from '@webx/ui';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
-import { useAuthContext } from '../../context/AuthContext';
 import { useState } from 'react';
+import { useAuthContext } from '../../provider/AuthProvider';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
 
