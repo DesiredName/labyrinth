@@ -1,18 +1,6 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-
-const AppThemeSwitch = ['light', 'dark', 'system'] as const;
-
-type AppThemeSwitchType = (typeof AppThemeSwitch)[number];
-
-type ThemeSwitcherContextType = {
-  theme: AppThemeSwitchType;
-  setTheme: (t: AppThemeSwitchType) => void;
-  handleSetNextTheme: () => void;
-};
-
-const ThemeSwitcherContext = createContext<
-  ThemeSwitcherContextType | undefined
->(undefined);
+import { useEffect, useState } from 'react';
+import { AppThemeSwitch, type AppThemeSwitchType } from './themes';
+import { ThemeSwitcherContext } from './ThemeSwitcherContext';
 
 const ThemeSwitcherProvider = ({ children }: { children: React.ReactNode }) => {
   const themeStorageKey = 'app-theme';
@@ -52,14 +40,4 @@ const ThemeSwitcherProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const useThemeSwitcherContext = (): ThemeSwitcherContextType => {
-  const context = useContext(ThemeSwitcherContext);
-  if (!context) {
-    throw new Error(
-      'useThemeSwitcherContext must be used within a ThemeSwitcherProvider',
-    );
-  }
-  return context;
-};
-
-export { ThemeSwitcherProvider, useThemeSwitcherContext };
+export { ThemeSwitcherProvider };
