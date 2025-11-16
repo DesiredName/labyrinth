@@ -6,7 +6,7 @@ import type React from 'react';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 import { useState } from 'react';
-import { useAuthContext } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthProvider';
 
 type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -18,7 +18,7 @@ const signUpSchema = z.object({
 
 const SignUpForm = (props: SignUpFormProps) => {
   const navigate = useNavigate();
-  const { signup } = useAuthContext();
+  const { signup } = useAuth();
   const { errors, validate } = useValidateForm(signUpSchema);
   const [pageError, setPageError] = useState<boolean>(false);
 

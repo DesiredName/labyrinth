@@ -9,7 +9,8 @@
     "dev": "concurrently \"npm run dev -w @webx/web\" \"npm run dev -w @webx/ui\" \"npm run dev -w @webx/server\"",
     "build": "npm run build --workspaces",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "c": "git add . && git commit -m \"update\" && git push"
   },
   "devDependencies": {
     "@types/node": "latest",

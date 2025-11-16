@@ -5,7 +5,7 @@ import { UIButton, UIInput } from '@webx/ui';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 import { useState } from 'react';
-import { useAuthContext } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthProvider';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -16,7 +16,7 @@ const signInSchema = z.object({
 
 const SignInForm = (props: SignInFormProps) => {
   const navigate = useNavigate();
-  const { signin } = useAuthContext();
+  const { signin } = useAuth();
   const { errors, validate } = useValidateForm(signInSchema);
   const [pageError, setPageError] = useState<boolean>(false);
 

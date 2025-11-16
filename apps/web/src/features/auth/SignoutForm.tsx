@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useAuthContext } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/AuthProvider';
 import { twMerge } from 'tailwind-merge';
 
 type SignOutFormProps = React.ComponentPropsWithoutRef<'div'>;
 
 const SignOutForm = ({ className, ...props }: SignOutFormProps) => {
-  const { signout } = useAuthContext();
+  const { signout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {

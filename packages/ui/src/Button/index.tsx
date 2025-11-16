@@ -22,8 +22,6 @@ const buttonVariants = cva(buttonBase, {
           hover:bg-[var(--color-btn-bg-hover)]
           hover:border-[var(--color-btn-border-hover)]
         `,
-      // bg-gray-700 hover:bg-gray-600
-      // dark:bg-amber-700 dark:hover:bg-amber-600
     },
   },
   defaultVariants: {

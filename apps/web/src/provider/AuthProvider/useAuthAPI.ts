@@ -2,7 +2,7 @@ import type {
   SigninUserRequestType,
   SignupUserRequestType,
 } from '@shared/ServerAPI';
-import { ApiClient } from './../utils/api-client';
+import { ApiClient } from '../../utils/api-client';
 import { useState, useCallback } from 'react';
 import { type UserSafeAttributes } from '@webx/shared';
 
