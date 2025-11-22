@@ -1,5 +1,5 @@
 import { PageTransition } from '../../components/PageTransition';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/Auth';
 
 const UserProfile = () => {
   const { user, isLoading } = useAuth();

@@ -19,7 +19,7 @@ const AuthLayout = () => (
     </main>
 
     <footer className="mt-auto mb-0 h-10 text-center">
-      <a href="/terms.html" target="_blank" className="text-gray-500">
+      <a href="/terms.html" className="text-(--color-accent)" target="_blank">
         Terms & Conditions
       </a>
     </footer>

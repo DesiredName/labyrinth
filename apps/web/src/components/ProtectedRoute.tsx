@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router';
-import { useAuth } from '../provider/AuthProvider';
+import { useAuth } from '../provider/Auth';
 
 interface IProtectedRouteProps {
   element: React.ReactElement;

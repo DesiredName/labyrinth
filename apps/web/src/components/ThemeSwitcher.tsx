@@ -3,6 +3,7 @@ import { IconDarkTheme } from './Icons/dark-theme';
 import { IconLightTheme } from './Icons/light-theme';
 import { UIIcon } from '@webx/ui';
 import { useThemeSwitcher } from '../provider/ThemeSwitcher';
+import { clsxtw } from '../utils/clsxtw';
 
 type BrandLogoProps = React.ComponentPropsWithoutRef<'div'>;
 
@@ -11,7 +12,12 @@ const ThemeSwitcher = React.forwardRef<HTMLDivElement, BrandLogoProps>(
     const { theme, handleSetNextTheme } = useThemeSwitcher();
 
     return (
-      <UIIcon ref={ref} {...props} onClick={handleSetNextTheme}>
+      <UIIcon
+        ref={ref}
+        className={clsxtw(className, 'text-(--color-secondary)')}
+        {...props}
+        onClick={handleSetNextTheme}
+      >
         {theme === 'dark' ? <IconDarkTheme /> : <IconLightTheme />}
       </UIIcon>
     );

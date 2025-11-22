@@ -5,7 +5,7 @@ import { UIButton, UIInput } from '@webx/ui';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 import { useState } from 'react';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/Auth';
 
 type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -85,7 +85,7 @@ const SignInForm = (props: SignInFormProps) => {
       )}
 
       <div className="text-center text-sm col-span-2">
-        <span className="text-gray-500 ">Don't have an account?</span>&nbsp;
+        <span>Don't have an account?</span>&nbsp;
         <Link to="/signup">Sign up</Link>
       </div>
     </form>

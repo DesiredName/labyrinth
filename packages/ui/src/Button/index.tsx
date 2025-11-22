@@ -18,6 +18,7 @@ const buttonVariants = cva(buttonBase, {
     variant: {
       primary: `
           bg-[var(--color-btn-bg)]
+          text-[var(--color-btn-text)]
           border border-[var(--color-btn-border)]
           hover:bg-[var(--color-btn-bg-hover)]
           hover:border-[var(--color-btn-border-hover)]

@@ -1,0 +1,37 @@
+.element-sidebar {
+  & {
+    @apply cursor-pointer;
+  }
+
+  a {
+    @apply block no-underline text-(--color-btn-text);
+  }
+
+  a.active {
+    @apply text-(--color-accent);
+  }
+
+  & > li:has(a.active) .icon {
+    @apply text-(--color-accent);
+  }
+
+  li {
+    @apply px-1 py-2 text-center whitespace-nowrap;
+    @apply relative cursor-pointer;
+  }
+
+  li > div:first-child {
+    @apply bg-(--color-btn-bg) border border-(--color-btn-border) hover:bg-(--color-btn-bg-hover) hover:border-(--color-btn-border-hover);
+    @apply rounded-full p-2 shadow-sm shadow-black/50;
+  }
+
+  li > menu {
+    @apply absolute pointer-events-none;
+    @apply top-0 left-full;
+    @apply transition-opacity duration-300 delay-100 opacity-0;
+  }
+
+  li:hover > menu {
+    @apply pointer-events-auto opacity-100;
+  }
+}

@@ -7,14 +7,18 @@ const ThemeSwitcherProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<AppThemeSwitchType>('system');
 
   useEffect(() => {
-    window.localStorage.setItem(themeStorageKey, theme);
+    let effectiveTheme: AppThemeSwitchType = 'system';
 
     if (theme === 'system') {
       const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.body.parentElement!.dataset.theme = isDark ? 'dark' : 'light';
+      effectiveTheme = isDark ? 'dark' : 'light';
     } else {
-      document.body.parentElement!.dataset.theme = theme;
+      effectiveTheme = theme;
     }
+
+    document.body.parentElement!.dataset.theme = effectiveTheme;
+
+    window.localStorage.setItem(themeStorageKey, effectiveTheme);
   }, [theme]);
 
   useEffect(() => {

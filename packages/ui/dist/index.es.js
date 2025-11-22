@@ -1,56 +1,56 @@
-import { jsx as i, jsxs as z } from "react/jsx-runtime";
-import { createContext as S, useContext as k, forwardRef as d } from "react";
-import { twMerge as T } from "tailwind-merge";
-const h = S({}), $ = () => k(h), q = ({ theme: t = {}, children: r }) => /* @__PURE__ */ i(h.Provider, { value: t, children: /* @__PURE__ */ i("div", { style: t, children: r }) });
+import { jsx as b } from "react/jsx-runtime";
+import { createContext as S, useContext as j, forwardRef as v } from "react";
+import { twMerge as k } from "tailwind-merge";
+const h = S({}), R = () => j(h), W = ({ theme: t = {}, children: e }) => /* @__PURE__ */ b(h.Provider, { value: t, children: /* @__PURE__ */ b("div", { style: t, children: e }) });
 function V(t) {
-  var r, e, n = "";
-  if (typeof t == "string" || typeof t == "number") n += t;
+  var e, r, o = "";
+  if (typeof t == "string" || typeof t == "number") o += t;
   else if (typeof t == "object") if (Array.isArray(t)) {
-    var o = t.length;
-    for (r = 0; r < o; r++) t[r] && (e = V(t[r])) && (n && (n += " "), n += e);
-  } else for (e in t) t[e] && (n && (n += " "), n += e);
-  return n;
+    var n = t.length;
+    for (e = 0; e < n; e++) t[e] && (r = V(t[e])) && (o && (o += " "), o += r);
+  } else for (r in t) t[r] && (o && (o += " "), o += r);
+  return o;
 }
 function N() {
-  for (var t, r, e = 0, n = "", o = arguments.length; e < o; e++) (t = arguments[e]) && (r = V(t)) && (n && (n += " "), n += r);
-  return n;
+  for (var t, e, r = 0, o = "", n = arguments.length; r < n; r++) (t = arguments[r]) && (e = V(t)) && (o && (o += " "), o += e);
+  return o;
 }
-const p = (t) => typeof t == "boolean" ? `${t}` : t === 0 ? "0" : t, g = N, f = (t, r) => (e) => {
-  var n;
-  if (r?.variants == null) return g(t, e?.class, e?.className);
-  const { variants: o, defaultVariants: s } = r, b = Object.keys(o).map((a) => {
-    const l = e?.[a], u = s?.[a];
+const p = (t) => typeof t == "boolean" ? `${t}` : t === 0 ? "0" : t, g = N, f = (t, e) => (r) => {
+  var o;
+  if (e?.variants == null) return g(t, r?.class, r?.className);
+  const { variants: n, defaultVariants: a } = e, c = Object.keys(n).map((s) => {
+    const l = r?.[s], d = a?.[s];
     if (l === null) return null;
-    const c = p(l) || p(u);
-    return o[a][c];
-  }), x = e && Object.entries(e).reduce((a, l) => {
-    let [u, c] = l;
-    return c === void 0 || (a[u] = c), a;
-  }, {}), I = r == null || (n = r.compoundVariants) === null || n === void 0 ? void 0 : n.reduce((a, l) => {
-    let { class: u, className: c, ...C } = l;
-    return Object.entries(C).every((j) => {
-      let [y, v] = j;
-      return Array.isArray(v) ? v.includes({
-        ...s,
-        ...x
+    const i = p(l) || p(d);
+    return n[s][i];
+  }), m = r && Object.entries(r).reduce((s, l) => {
+    let [d, i] = l;
+    return i === void 0 || (s[d] = i), s;
+  }, {}), C = e == null || (o = e.compoundVariants) === null || o === void 0 ? void 0 : o.reduce((s, l) => {
+    let { class: d, className: i, ...I } = l;
+    return Object.entries(I).every((z) => {
+      let [y, u] = z;
+      return Array.isArray(u) ? u.includes({
+        ...a,
+        ...m
       }[y]) : {
-        ...s,
-        ...x
-      }[y] === v;
+        ...a,
+        ...m
+      }[y] === u;
     }) ? [
-      ...a,
-      u,
-      c
-    ] : a;
+      ...s,
+      d,
+      i
+    ] : s;
   }, []);
-  return g(t, b, I, e?.class, e?.className);
+  return g(t, c, C, r?.class, r?.className);
 };
-function m(...t) {
-  return T(N(t));
+function x(...t) {
+  return k(N(t));
 }
-const U = `
+const T = `
   inline-flex items-center justify-center rounded-md cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
-`, w = f(U, {
+`, U = f(T, {
   variants: {
     uiSize: {
       xs: "px-2 py-1 text-xs",
@@ -62,6 +62,7 @@ const U = `
     variant: {
       primary: `
           bg-[var(--color-btn-bg)]
+          text-[var(--color-btn-text)]
           border border-[var(--color-btn-border)]
           hover:bg-[var(--color-btn-bg-hover)]
           hover:border-[var(--color-btn-border-hover)]
@@ -72,14 +73,14 @@ const U = `
     uiSize: "base",
     variant: "primary"
   }
-}), A = d(
-  ({ uiSize: t, variant: r, className: e, children: n, ...o }, s) => {
-    const b = m(w({ uiSize: t, variant: r }), e);
-    return /* @__PURE__ */ i("button", { ref: s, className: b, ...o, children: n });
+}), w = v(
+  ({ uiSize: t, variant: e, className: r, children: o, ...n }, a) => {
+    const c = x(U({ uiSize: t, variant: e }), r);
+    return /* @__PURE__ */ b("button", { ref: a, className: c, ...n, children: o });
   }
 );
-A.displayName = "UIButton";
-const O = f("inline-block border border-gray-200 rounded-md", {
+w.displayName = "UIButton";
+const A = f("inline-block border border-gray-200 rounded-md", {
   variants: {
     uiSize: {
       xs: "px-1 py-1 text-xs",
@@ -87,19 +88,29 @@ const O = f("inline-block border border-gray-200 rounded-md", {
       base: "px-2 py-2 text-base",
       lg: "px-3 py-2.5 text-lg",
       xl: "px-3 py-3 text-xl"
+    },
+    variant: {
+      primary: `
+          bg-[var(--color-btn-bg)]
+          text-[var(--color-btn-text)]
+          border border-[var(--color-btn-border)]
+          hover:bg-[var(--color-btn-bg-hover)]
+          hover:border-[var(--color-btn-border-hover)]
+        `
     }
   },
   defaultVariants: {
-    uiSize: "base"
+    uiSize: "base",
+    variant: "primary"
   }
-}), P = d(
-  ({ uiSize: t, className: r, size: e, ...n }, o) => {
-    const s = m(O({ uiSize: t }), r);
-    return /* @__PURE__ */ i("input", { ref: o, size: e ?? 1, className: s, ...n });
+}), O = v(
+  ({ uiSize: t, variant: e, className: r, size: o, ...n }, a) => {
+    const c = x(A({ uiSize: t, variant: e }), r);
+    return /* @__PURE__ */ b("input", { ref: a, size: o ?? 1, className: c, ...n });
   }
 );
-P.displayName = "Input";
-const B = f(
+O.displayName = "Input";
+const P = f(
   "cursor-pointer select-none border border-transparent hover:border-black rounded-full",
   {
     variants: {
@@ -115,25 +126,28 @@ const B = f(
       uiSize: "base"
     }
   }
-), M = d(
-  ({ uiSize: t, className: r, children: e, ...n }, o) => {
-    const s = m(B({ uiSize: t }), r);
-    return /* @__PURE__ */ i("div", { ref: o, className: s, ...n, children: e });
+), B = v(
+  ({ uiSize: t, className: e, children: r, ...o }, n) => {
+    const a = x(P({ uiSize: t }), e);
+    return /* @__PURE__ */ b("div", { ref: n, className: a, ...o, children: r });
   }
 );
-M.displayName = "Icon";
-const _ = (t) => /* @__PURE__ */ z("li", { children: [
-  /* @__PURE__ */ i("div", { children: t.to() }),
-  t.items && t.items.map((r, e) => /* @__PURE__ */ i(E, { ...r }, e))
-] }), E = d(
-  ({ items: t, ...r }, e) => /* @__PURE__ */ i("menu", { ref: e, ...r, children: t.map((n) => /* @__PURE__ */ i(_, { ...n })) })
-), D = {
-  "--color-btn-bg": "#1f2937",
+B.displayName = "Icon";
+const $ = {
+  "--color-primary": "#333",
+  "--color-secondary": "#eee",
+  "--color-accent": "#fb5f5f",
+  "--color-toolbar-bg": "#828282",
+  "--color-btn-bg": "#444",
   "--color-btn-text": "#ffffff",
   "--color-btn-border": "#374151",
   "--color-btn-bg-hover": "#4b5563",
   "--color-btn-border-hover": "#6b7280"
-}, F = {
+}, q = {
+  "--color-primary": "#fefefe",
+  "--color-secondary": "#7a7a7a",
+  "--color-accent": "#c83131",
+  "--color-toolbar-bg": "#373737",
   "--color-btn-bg": "#ffffff",
   "--color-btn-text": "#000000",
   "--color-btn-border": "#d1d5db",
@@ -141,15 +155,14 @@ const _ = (t) => /* @__PURE__ */ z("li", { children: [
   "--color-btn-border-hover": "#cbd5e1"
 };
 export {
-  q as ThemeProvider,
-  A as UIButton,
-  M as UIIcon,
-  P as UIInput,
-  E as UIMenu,
-  F as brightTheme,
-  w as buttonVariants,
-  D as darkTheme,
-  B as iconVariants,
-  O as inputVariants,
-  $ as useTheme
+  W as ThemeProvider,
+  w as UIButton,
+  B as UIIcon,
+  O as UIInput,
+  q as brightTheme,
+  U as buttonVariants,
+  $ as darkTheme,
+  P as iconVariants,
+  A as inputVariants,
+  R as useTheme
 };

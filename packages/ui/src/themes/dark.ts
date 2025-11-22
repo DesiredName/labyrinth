@@ -1,7 +1,13 @@
 import { type Theme } from '../theme';
 
 const darkTheme: Theme = {
-  '--color-btn-bg': '#1f2937',
+  '--color-primary': '#333',
+  '--color-secondary': '#eee',
+  '--color-accent': '#fb5f5f',
+
+  '--color-toolbar-bg': '#828282',
+
+  '--color-btn-bg': '#444',
   '--color-btn-text': '#ffffff',
   '--color-btn-border': '#374151',
 

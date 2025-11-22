@@ -11,10 +11,11 @@ import { CompainProfit } from '../pages/reports/compain-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
 import { AnimatePresence } from 'framer-motion';
-import { useAuth } from '../provider/AuthProvider';
+import { useAuth } from '../provider/Auth';
 import { SignOut } from '../pages/auth/signout';
 import ProtectedRoute from '../components/ProtectedRoute';
-import { UserProfile } from '../pages/auth/user-profile';
+import { UserProfile } from '../pages/settings/user-profile';
+import { Settings } from '../pages/settings';
 
 const AppRouter = () => {
   const { isAuthenticated, isInitialized } = useAuth();
@@ -49,10 +50,6 @@ const AppRouter = () => {
 
         <Route element={<BaseLayout />}>
           <Route
-            path="user-profile"
-            element={<ProtectedRoute element={<UserProfile />} />}
-          />
-          <Route
             path="dashboard"
             element={<ProtectedRoute element={<Dashboard />} />}
           />
@@ -72,6 +69,13 @@ const AppRouter = () => {
             <Route
               path="date-profit"
               element={<ProtectedRoute element={<DateProfit />} />}
+            />
+          </Route>
+          <Route path="settings">
+            <Route index element={<ProtectedRoute element={<Settings />} />} />
+            <Route
+              path="user-profile"
+              element={<ProtectedRoute element={<UserProfile />} />}
             />
           </Route>
         </Route>

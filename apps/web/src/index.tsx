@@ -4,11 +4,14 @@ import './styles/index.css';
 import { App } from './app';
 import { ThemeSwitcherProvider } from './provider/ThemeSwitcher';
 import { StrictMode } from 'react';
+import { AuthProvider } from './provider/Auth';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeSwitcherProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </ThemeSwitcherProvider>
   </StrictMode>,
 );

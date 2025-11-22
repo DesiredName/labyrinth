@@ -6,7 +6,7 @@ import type React from 'react';
 import { useValidateForm } from '../../utils/validate.form';
 import z from 'zod';
 import { useState } from 'react';
-import { useAuth } from '../../provider/AuthProvider';
+import { useAuth } from '../../provider/Auth';
 
 type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
 
@@ -101,7 +101,7 @@ const SignUpForm = (props: SignUpFormProps) => {
       )}
 
       <div className="text-center text-sm col-span-2">
-        <span className="text-gray-500 ">Already have an account?</span>&nbsp;
+        <span>Already have an account?</span>&nbsp;
         <Link to="/signin">Sign in</Link>
       </div>
     </form>
