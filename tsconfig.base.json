@@ -29,6 +29,9 @@
       "path": "packages/shared"
     },
     {
+      "path": "packages/tracker"
+    },
+    {
       "path": "packages/config"
     },
     {

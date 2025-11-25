@@ -59,7 +59,7 @@ const props: UIMenuProps = {
     {
       id: '8',
       to: () => (
-        <NavLink to="/settings/profile">
+        <NavLink to="/settings/user-profile">
           <IconSettings className="icon" />
         </NavLink>
       ),

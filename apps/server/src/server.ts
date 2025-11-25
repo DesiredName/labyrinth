@@ -7,7 +7,7 @@ const port = process.env.SERVER_PORT ?? 3000;
 logMessage(`Starting application`, { port });
 
 const start = async () => {
-  await db.sync({ alter: false, logging: false });
+  await db.sync({ alter: false, logging: true });
   return app.listen(port, () => {
     logMessage(`Application has started`, { port });
   });

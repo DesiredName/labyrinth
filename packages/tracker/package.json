@@ -1,0 +1,19 @@
+{
+  "name": "@webx/tracker",
+  "version": "0.0.1",
+  "main": "dist/index.es.js",
+  "types": "dist/index.es.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.es.d.ts"
+    },
+    "./index.css": "./dist/index.css"
+  },
+  "scripts": {
+    "dev": "vite build"
+  },
+  "bundleDependencies": [
+    "@webx/tracker"
+  ]
+}
