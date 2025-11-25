@@ -40,8 +40,10 @@ _Note: Runtime configuration merges with existing settings. Omitted properties r
 ### Consent Management
 
 > [!CAUTION]
+>
 > **Privacy-First Architecture : WebX is opt-in by default.**
-> No data will be recorded until you explicitly grant permission for a specific category. Any > track calls made before granting permission will be safely ignored.
+>
+> No data will be recorded until you explicitly grant permission for a specific category. Any track calls made before granting permission will be safely ignored.
 
 You can grant or revoke permissions using Custom Events or the Global Object.
 
