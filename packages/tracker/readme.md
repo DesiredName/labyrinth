@@ -22,10 +22,6 @@ Add the tracking script (preferably in the `<head>` section):
 - `data-beacon-url` (Required): The endpoint URL where analytics data will be sent.
 - `data-track-threshold` (Optional): A limit for any tracked category. When this number of events is reached, data is sent immediately to the server (flushed). Default is 255.
 
-> [!IMPORTANT]
-> **Privacy-First Architecture : WebX is opt-in by default.**
-> No data will be recorded until you explicitly grant permission for a specific category. Any > track calls made before granting permission will be safely ignored.
-
 ### Configuration
 
 Configuration parameters are typically passed via `data-` attributes on the script tag.
@@ -42,6 +38,10 @@ window.__webx.setConfig({
 _Note: Runtime configuration merges with existing settings. Omitted properties remain unchanged._
 
 ### Consent Management
+
+> [!CAUTION]
+> **Privacy-First Architecture : WebX is opt-in by default.**
+> No data will be recorded until you explicitly grant permission for a specific category. Any > track calls made before granting permission will be safely ignored.
 
 You can grant or revoke permissions using Custom Events or the Global Object.
 
