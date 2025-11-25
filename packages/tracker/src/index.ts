@@ -1,8 +1,18 @@
 (function () {
+  const scr = document.currentScript;
+
+  const attrCmpId = scr?.dataset.cmpid;
+  const attrUrl = scr?.dataset.beaconUrl;
+  const attrTrackThreshold = parseInt(scr?.dataset.trackThreshold ?? '', 10);
+
   const config: WebXAnalyticsConfig = {
-    cmpid: '',
-    beaconURL: '',
-    trackLimitPerCategory: 255,
+    cmpid: attrCmpId || '',
+    beaconURL: attrUrl || '',
+    attrTrackThreshold: Number.isInteger(attrTrackThreshold)
+      ? attrTrackThreshold > 1
+        ? attrTrackThreshold
+        : 255
+      : 255,
   };
 
   const buffer = new Map<
@@ -10,7 +20,7 @@
     Array<WebxAnalyticsBeaconData['entries'][number]>
   >();
 
-  function setConfig(newConfig: WebXAnalyticsConfig) {
+  function setConfig(newConfig: Partial<WebXAnalyticsConfig>) {
     Object.assign(config, newConfig);
   }
 
@@ -28,12 +38,13 @@
       keepalive: true,
       headers: { 'Content-Type': 'application/json' },
     })
-      .then(() => clear())
-      .catch((err) => console.error('WebX lost data', err));
+      .catch((err) => console.error('WebX lost data', err))
+      .finally(() => clear());
   }
 
   function sendBeacon() {
-    if (!config.beaconURL) return;
+    if (!config.cmpid) return console.error('WebX: no campaign ID');
+    if (!config.beaconURL) return console.error('WebX: no beacon URL');
     if (hasData() !== true) return;
 
     const data = compose();
@@ -67,12 +78,12 @@
   function track(
     category: string,
     event: string,
-    data: WebXAnalyticsTrackData,
+    data?: WebXAnalyticsTrackData,
   ) {
     const trk = buffer.get(category);
     if (trk == null) return;
     trk.push({ event, data, ts: Date.now() });
-    if (trk.length >= config.trackLimitPerCategory) {
+    if (trk.length >= config.attrTrackThreshold) {
       sendBeacon();
     }
   }
@@ -140,7 +151,7 @@ declare interface WebXAnalyticsConfig {
   /** URL to send data to */
   beaconURL: string;
   /** When number of events on ANY tracked category is reached, send immediately */
-  trackLimitPerCategory: number;
+  attrTrackThreshold: number;
 }
 
 declare interface WebXAnalyticsSetConfigFn {
@@ -175,7 +186,7 @@ declare interface WebXAnalyticsTrackEvent
   extends CustomEvent<{
     category: string;
     event: string;
-    data: WebXAnalyticsTrackData;
+    data?: WebXAnalyticsTrackData;
   }> {}
 
 declare type WebxAnalyticsBeaconData = {
@@ -183,7 +194,7 @@ declare type WebxAnalyticsBeaconData = {
   entries: {
     event: string;
     ts: number;
-    data: WebXAnalyticsTrackData;
+    data?: WebXAnalyticsTrackData;
   }[];
 };
 
