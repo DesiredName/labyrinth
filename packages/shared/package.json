@@ -4,8 +4,10 @@
   "main": "src/index.ts",
   "type": "module",
   "peerDependencies": {
-    "sequelize": "latest",
-    "zod": "latest"
+    "zod": "^4.1.13",
+    "sequelize": "^6.37.7",
+    "express": "^5.1.0",
+    "@types/express": "^5.0.5"
   },
   "bundleDependencies": [
     "@webx/shared"

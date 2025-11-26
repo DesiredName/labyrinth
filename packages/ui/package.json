@@ -11,18 +11,18 @@
     "./index.css": "./dist/index.css"
   },
   "peerDependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "styled-components": "latest",
-    "tailwindcss": "latest",
-    "tailwind-merge": "latest"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "styled-components": "^6.1.19",
+    "tailwindcss": "^4.1.17",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "react": "latest",
-    "react-dom": "latest",
-    "styled-components": "latest",
-    "tailwindcss": "latest",
-    "tailwind-merge": "latest"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "styled-components": "^6.1.19",
+    "tailwindcss": "^4.1.17",
+    "tailwind-merge": "^3.4.0"
   },
   "scripts": {
     "dev": "vite build -w"

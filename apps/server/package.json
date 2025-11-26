@@ -7,19 +7,19 @@
   },
   "dependencies": {
     "@webx/shared": "0.0.1",
-    "argon2": "latest",
-    "cookie-parser": "latest",
-    "cors": "latest",
-    "es-cookie": "latest",
-    "express": "latest",
-    "jsonwebtoken": "latest",
-    "mssql": "latest",
-    "sequelize": "latest",
-    "zod": "latest"
+    "argon2": "^0.44.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "es-cookie": "^1.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mssql": "^12.1.1",
+    "sequelize": "^6.37.7",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/cors": "latest",
-    "@types/express": "latest",
-    "@types/jsonwebtoken": "latest"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/jsonwebtoken": "^9.0.10"
   }
 }
