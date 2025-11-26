@@ -1,6 +1,6 @@
 import z from 'zod';
 
-const SignupUserRequest = z.object({
+const RegisterUserRequest = z.object({
   body: z.object({
     email: z.email().nonempty(),
     username: z.string().nonempty(),
@@ -8,16 +8,16 @@ const SignupUserRequest = z.object({
   }),
 });
 
-type SignupUserRequestType = z.infer<typeof SignupUserRequest>['body'];
+type RegisterUserRequestType = z.infer<typeof RegisterUserRequest>['body'];
 
-const SigninUserRequest = z.object({
+const LoginUserRequest = z.object({
   body: z.object({
     email: z.email().nonempty(),
     password: z.string().nonempty(),
   }),
 });
 
-type SigninUserRequestType = z.infer<typeof SigninUserRequest>['body'];
+type LoginUserRequestType = z.infer<typeof LoginUserRequest>['body'];
 
-export { SignupUserRequest, SigninUserRequest };
-export type { SigninUserRequestType, SignupUserRequestType };
+export { RegisterUserRequest, LoginUserRequest };
+export type { LoginUserRequestType, RegisterUserRequestType };

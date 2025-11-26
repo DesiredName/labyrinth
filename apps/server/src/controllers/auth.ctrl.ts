@@ -2,8 +2,9 @@ import type { Request, Response } from 'express';
 import { AuthService } from '../services/auth.srv.ts';
 import {
   HTTP_CODES,
-  type SigninUserRequestType,
-  type SignupUserRequestType,
+  type LoginUserRequestType,
+  type RegisterUserRequestType,
+  type UserSafeAttributes,
 } from '@webx/shared';
 import {
   assignAuthCookie,
@@ -11,53 +12,71 @@ import {
   verifyAuthCookie,
 } from '../utils/assignAuthCookie.ts';
 import { UserService } from '../services/user.srv.ts';
+import { RequestHelpers } from '../utils/requestHelpers.ts';
 
-const signIn = async (
-  req: Request<{}, {}, SigninUserRequestType>,
+/**
+ * helpers
+ */
+const AuthRequestHelpers = {
+  success: (res: Response, user: UserSafeAttributes) => {
+    assignAuthCookie(res, user);
+    return res.status(HTTP_CODES.OK).json(user);
+  },
+
+  created: (res: Response, user: UserSafeAttributes) => {
+    assignAuthCookie(res, user);
+    return res.status(HTTP_CODES.CREATED).json(user);
+  },
+};
+
+/**
+ * login user
+ */
+const login = async (
+  req: Request<{}, {}, LoginUserRequestType>,
   res: Response,
 ) => {
   const { email, password } = req.body;
   const user = await AuthService.verifyUser({ email, password });
 
-  if (user == null) {
-    return res.sendStatus(HTTP_CODES.UNAUTHORIZED);
-  }
+  if (user == null) return RequestHelpers.unauthorized(res);
 
-  assignAuthCookie(res, user);
-
-  res.json(user);
+  return AuthRequestHelpers.success(res, user);
 };
 
-const signUp = async (
-  req: Request<{}, {}, SignupUserRequestType>,
+/**
+ * register new user
+ */
+const register = async (
+  req: Request<{}, {}, RegisterUserRequestType>,
   res: Response,
 ) => {
   const { email, username, password } = req.body;
   const user = await AuthService.registerNewUser({ email, username, password });
 
-  if (user == null) {
-    return res.sendStatus(HTTP_CODES.FORBIDDEN);
-  }
+  if (user == null) return RequestHelpers.forbidden(res);
 
-  assignAuthCookie(res, user);
-
-  res.status(HTTP_CODES.CREATED).json(user);
+  return AuthRequestHelpers.created(res, user);
 };
 
-const signOut = async (req: Request, res: Response) => {
+/**
+ * signout user
+ */
+const signout = async (req: Request, res: Response) => {
   clearAuthCookie(res);
   res.sendStatus(HTTP_CODES.OK);
 };
 
+/**
+ * Used to check if user is still logged in
+ */
 const check = async (req: Request, res: Response) => {
-  const probablyUser = verifyAuthCookie(req);
-  const user = await UserService.getProfile(probablyUser?.email);
+  const session = verifyAuthCookie(req);
+  const user = await UserService.getProfile(session?.email);
 
-  if (user == null) {
-    return res.sendStatus(HTTP_CODES.UNAUTHORIZED);
-  }
+  if (user == null) return RequestHelpers.unauthorized(res);
 
-  res.json(user);
+  return AuthRequestHelpers.success(res, user);
 };
 
-export { signIn, signUp, signOut, check };
+export { login, register, signout, check };

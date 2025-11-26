@@ -8,18 +8,18 @@ import z from 'zod';
 import { useState } from 'react';
 import { useAuth } from '../../provider/Auth';
 
-type SignUpFormProps = React.ComponentPropsWithoutRef<'form'>;
+type RegisterFormProps = React.ComponentPropsWithoutRef<'form'>;
 
-const signUpSchema = z.object({
+const registerSchema = z.object({
   email: z.email('Invalid email address'),
   username: z.string().min(3, 'Username too short'),
   password: z.string().min(12, 'Password must be at least 12 characters'),
 });
 
-const SignUpForm = (props: SignUpFormProps) => {
+const RegisterForm = (props: RegisterFormProps) => {
   const navigate = useNavigate();
-  const { signup } = useAuth();
-  const { errors, validate } = useValidateForm(signUpSchema);
+  const { register } = useAuth();
+  const { errors, validate } = useValidateForm(registerSchema);
   const [pageError, setPageError] = useState<boolean>(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -34,7 +34,7 @@ const SignUpForm = (props: SignUpFormProps) => {
       return;
     }
 
-    const response = await signup(result.data);
+    const response = await register(result.data);
 
     if (response) {
       navigate('/dashboard');
@@ -92,20 +92,20 @@ const SignUpForm = (props: SignUpFormProps) => {
       )}
 
       <UIButton type="submit" className="col-span-2">
-        Sign up
+        Register
       </UIButton>
       {pageError && (
         <div className="col-span-2 text-right text-red-700 text-sm">
-          Failed to sign up
+          Failed to register
         </div>
       )}
 
       <div className="text-center text-sm col-span-2">
         <span>Already have an account?</span>&nbsp;
-        <Link to="/signin">Sign in</Link>
+        <Link to="/login">Login</Link>
       </div>
     </form>
   );
 };
 
-export { SignUpForm };
+export { RegisterForm };

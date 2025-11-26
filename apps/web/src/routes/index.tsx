@@ -3,8 +3,7 @@ import { AuthLayout } from '../layouts/auth.layout';
 import { BaseLayout } from '../layouts/base.layout';
 import { NotFound } from '../not-found';
 import { RestorePassword } from '../pages/auth/restore-password';
-import { SignIn } from '../pages/auth/signin';
-import { SignUp } from '../pages/auth/signup';
+import { Register } from '../pages/auth/register';
 import { Dashboard } from '../pages/dashboard';
 import { Compaings } from '../pages/compaings';
 import { CompainProfit } from '../pages/reports/compain-profit';
@@ -16,6 +15,7 @@ import { SignOut } from '../pages/auth/signout';
 import ProtectedRoute from '../components/ProtectedRoute';
 import { UserProfile } from '../pages/settings/user-profile';
 import { Settings } from '../pages/settings';
+import { Login } from '../pages/auth/login';
 
 const AppRouter = () => {
   const { isAuthenticated, isInitialized } = useAuth();
@@ -36,14 +36,14 @@ const AppRouter = () => {
             isAuthenticated ? (
               <Navigate to="/dashboard" replace />
             ) : (
-              <Navigate to="/signin" replace />
+              <Navigate to="/login" replace />
             )
           }
         ></Route>
 
         <Route element={<AuthLayout />}>
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="signout" element={<SignOut />} />
           <Route path="restore-password" element={<RestorePassword />} />
         </Route>

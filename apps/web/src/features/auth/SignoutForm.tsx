@@ -11,7 +11,7 @@ const SignOutForm = ({ className, ...props }: SignOutFormProps) => {
 
   useEffect(() => {
     signout().finally(() => {
-      navigate('/signin');
+      navigate('/login');
     });
   }, []);
 

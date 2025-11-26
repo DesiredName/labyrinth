@@ -1,9 +1,7 @@
+import type { UserSafeAttributes } from '@shared/index';
 import type {
-  CheckUserResponseType,
-  SigninUserRequestType,
-  SigninUserResponseType,
-  SignupUserRequestType,
-  SignupUserResponseType,
+  LoginUserRequestType,
+  RegisterUserRequestType,
 } from '@shared/ServerAPI';
 
 class ApiClient {
@@ -18,29 +16,29 @@ class ApiClient {
       method: 'POST',
       credentials: 'include',
     });
-    const data = (await res.json()) as CheckUserResponseType;
+    const data = (await res.json()) as UserSafeAttributes;
     return data;
   }
 
-  async signin(creds: SigninUserRequestType) {
-    const res = await fetch(`${this.baseURL}/auth/signin`, {
+  async login(creds: LoginUserRequestType) {
+    const res = await fetch(`${this.baseURL}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creds),
       credentials: 'include',
     });
-    const data = (await res.json()) as SigninUserResponseType;
+    const data = (await res.json()) as UserSafeAttributes;
     return data;
   }
 
-  async signup(creds: SignupUserRequestType) {
-    const res = await fetch(`${this.baseURL}/auth/signup`, {
+  async register(creds: RegisterUserRequestType) {
+    const res = await fetch(`${this.baseURL}/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(creds),
       credentials: 'include',
     });
-    const data = (await res.json()) as SignupUserResponseType;
+    const data = (await res.json()) as UserSafeAttributes;
     return data;
   }
 

@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
-import { SignInForm } from '../../features/auth/SignInForm';
 import { PageTransition } from '../../components/PageTransition';
+import { RegisterForm } from '../../features/auth/RegisterForm';
 
-const SignIn = () => (
+const Register = () => (
   <PageTransition>
-    <SignInForm className="w-80" />
+    <RegisterForm className="w-80" />
     <br></br>
     <div className="text-center text-sm col-span-2">
       <Link to="/restore-password">Restore password</Link>
@@ -12,4 +12,4 @@ const SignIn = () => (
   </PageTransition>
 );
 
-export { SignIn };
+export { Register };

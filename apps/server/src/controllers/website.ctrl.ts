@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import { WebsiteService } from '../services/website.srv.ts';
-import { HTTP_CODES } from '@shared/index.ts';
+import { HTTP_CODES } from '@webx/shared';
 
 const getWebsite = async (req: Request, res: Response) => {
   const search = '1';

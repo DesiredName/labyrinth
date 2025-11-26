@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { UserService } from '../services/user.srv.ts';
 import { verifyAuthCookie } from '../utils/assignAuthCookie.ts';
-import { HTTP_CODES } from '@shared/index.ts';
+import { HTTP_CODES } from '@webx/shared';
 
 const getProfile = async (req: Request, res: Response) => {
   const probablyUser = verifyAuthCookie(req);

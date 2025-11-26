@@ -1,6 +1,6 @@
 import type {
-  SigninUserRequestType,
-  SignupUserRequestType,
+  LoginUserRequestType,
+  RegisterUserRequestType,
 } from '@shared/ServerAPI';
 import { ApiClient } from '../../utils/api-client';
 import { useState, useCallback } from 'react';
@@ -15,10 +15,10 @@ const useAuth = (apiClient: ApiClient) => {
   const checkAuth = useCallback(async () => {
     setIsInitialized(false);
     try {
-      const response = await apiClient.checkAuth();
-      setIsAuthenticated(response.success);
-      setUser(response.data);
-      return response;
+      const user = await apiClient.checkAuth();
+      setIsAuthenticated(user != null);
+      setUser(user);
+      return user;
     } catch (error) {
       setIsAuthenticated(false);
       return false;
@@ -27,13 +27,13 @@ const useAuth = (apiClient: ApiClient) => {
     }
   }, [apiClient]);
 
-  const signin = useCallback(
-    async (credentials: SigninUserRequestType) => {
+  const login = useCallback(
+    async (credentials: LoginUserRequestType) => {
       setIsLoading(true);
       try {
-        const response = await apiClient.signin(credentials);
-        setIsAuthenticated(response.success);
-        setUser(response.data);
+        const user = await apiClient.login(credentials);
+        setIsAuthenticated(user != null);
+        setUser(user);
         return true;
       } catch (ex) {
         setIsAuthenticated(false);
@@ -46,13 +46,13 @@ const useAuth = (apiClient: ApiClient) => {
     [apiClient],
   );
 
-  const signup = useCallback(
-    async (userData: SignupUserRequestType) => {
+  const register = useCallback(
+    async (userData: RegisterUserRequestType) => {
       setIsLoading(true);
       try {
-        const response = await apiClient.signup(userData);
-        setIsAuthenticated(response.success);
-        setUser(response.data);
+        const user = await apiClient.register(userData);
+        setIsAuthenticated(user != null);
+        setUser(user);
         return true;
       } catch (ex) {
         setIsAuthenticated(false);
@@ -83,8 +83,8 @@ const useAuth = (apiClient: ApiClient) => {
     isAuthenticated,
     setIsAuthenticated,
     checkAuth,
-    signin,
-    signup,
+    login,
+    register,
     signout,
     user,
   };

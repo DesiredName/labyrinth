@@ -2,7 +2,7 @@ import express from 'express';
 import { router } from './routes/index.ts';
 import { errorMiddleware } from './middleware/error.middleware.ts';
 import cors from 'cors';
-import { HTTP_CODES } from '@shared/index.ts';
+import { HTTP_CODES } from '@webx/shared';
 
 const app = express();
 

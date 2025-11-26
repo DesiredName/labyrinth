@@ -1,4 +1,4 @@
-import { HTTP_CODES } from '@shared/index.ts';
+import { HTTP_CODES } from '@webx/shared';
 import type { Request, Response, NextFunction } from 'express';
 import type { ZodObject } from 'zod';
 

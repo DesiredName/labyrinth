@@ -28,7 +28,7 @@ const RestoreForm = (props: RestoreFormProps) => {
     }
 
     console.log('ok');
-    // const res = await fetch('/api/signup', {
+    // const res = await fetch('/api/register', {
     //   method: 'POST',
     //   body: formData,
     // });
@@ -63,7 +63,7 @@ const RestoreForm = (props: RestoreFormProps) => {
 
       <div className="text-center text-sm col-span-2">
         <span>Already have an account?</span>&nbsp;
-        <Link to="/signin">Sign in</Link>
+        <Link to="/login">Login</Link>
       </div>
     </form>
   );

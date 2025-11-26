@@ -7,17 +7,17 @@ import z from 'zod';
 import { useState } from 'react';
 import { useAuth } from '../../provider/Auth';
 
-type SignInFormProps = React.ComponentPropsWithoutRef<'form'>;
+type LoginFormProps = React.ComponentPropsWithoutRef<'form'>;
 
-const signInSchema = z.object({
+const loginSchema = z.object({
   email: z.email('Invalid email address'),
   password: z.string().nonempty(),
 });
 
-const SignInForm = (props: SignInFormProps) => {
+const LoginForm = (props: LoginFormProps) => {
   const navigate = useNavigate();
-  const { signin } = useAuth();
-  const { errors, validate } = useValidateForm(signInSchema);
+  const { login } = useAuth();
+  const { errors, validate } = useValidateForm(loginSchema);
   const [pageError, setPageError] = useState<boolean>(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -32,7 +32,7 @@ const SignInForm = (props: SignInFormProps) => {
       return;
     }
 
-    const response = await signin(result.data);
+    const response = await login(result.data);
 
     if (response) {
       navigate('/dashboard');
@@ -86,10 +86,10 @@ const SignInForm = (props: SignInFormProps) => {
 
       <div className="text-center text-sm col-span-2">
         <span>Don't have an account?</span>&nbsp;
-        <Link to="/signup">Sign up</Link>
+        <Link to="/register">Register</Link>
       </div>
     </form>
   );
 };
 
-export { SignInForm };
+export { LoginForm };
