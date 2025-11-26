@@ -1,39 +1,49 @@
 import type { Request, Response } from 'express';
-import { wrappedRequestHandler } from '../utils/wrappedRequestHandler.ts';
-import { wrpappedResponse } from '../utils/wrapperResponse.ts';
 import { WebsiteService } from '../services/website.srv.ts';
+import { HTTP_CODES } from '@shared/index.ts';
 
-const getWebsite = wrappedRequestHandler(
-  async (req: Request, res: Response) => {
-    const search = '1';
-    const websites = await WebsiteService.getWebsite(search);
-    wrpappedResponse(res, true, websites, 401);
-  },
-);
+const getWebsite = async (req: Request, res: Response) => {
+  const search = '1';
+  const website = await WebsiteService.getWebsite(search);
 
-const createWebsite = wrappedRequestHandler(
-  async (req: Request, res: Response) => {
-    const url = '1';
-    const websites = await WebsiteService.createWebsite(url);
-    wrpappedResponse(res, true, websites, 401);
-  },
-);
+  if (website == null) {
+    return res.sendStatus(HTTP_CODES.NOT_FOUND);
+  }
 
-const updateWebsite = wrappedRequestHandler(
-  async (req: Request, res: Response) => {
-    const id = 1;
-    const url = '2';
-    const websites = await WebsiteService.updateWebsite(id, url);
-    wrpappedResponse(res, true, websites, 401);
-  },
-);
+  res.json(website);
+};
 
-const deleteWebsite = wrappedRequestHandler(
-  async (req: Request, res: Response) => {
-    const id = 1;
-    const websites = await WebsiteService.deleteWebsite(id);
-    wrpappedResponse(res, true, websites, 401);
-  },
-);
+const createWebsite = async (req: Request, res: Response) => {
+  const url = '1';
+  const website = await WebsiteService.createWebsite(url);
+
+  if (website == null) {
+    return res.sendStatus(HTTP_CODES.CAN_NOT_CRUD);
+  }
+
+  return res.status(HTTP_CODES.CREATED).json(website);
+};
+
+const updateWebsite = async (req: Request, res: Response) => {
+  const id = 1;
+  const url = '2';
+  const website = await WebsiteService.updateWebsite(id, url);
+
+  if (website == null) {
+    return res.sendStatus(HTTP_CODES.CAN_NOT_CRUD);
+  }
+
+  return res.json(website);
+};
+
+const deleteWebsite = async (req: Request, res: Response) => {
+  const id = 1;
+  const website = await WebsiteService.deleteWebsite(id);
+
+  if (website === 0) {
+    return res.sendStatus(HTTP_CODES.CAN_NOT_CRUD);
+  }
+  return res.sendStatus(HTTP_CODES.OK);
+};
 
 export { getWebsite, createWebsite, updateWebsite, deleteWebsite };

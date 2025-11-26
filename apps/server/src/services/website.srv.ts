@@ -2,8 +2,8 @@ import { col, fn, Op } from 'sequelize';
 import { Website } from '../models/Website.ts';
 
 class WebsiteService {
-  static async getWebsite(search: string) {
-    const websites = await Website.findOne({
+  static getWebsite(search: string) {
+    return Website.findOne({
       where: {
         [Op.or]: [
           { id: search },
@@ -17,25 +17,18 @@ class WebsiteService {
         ],
       },
     });
-    return websites;
   }
 
-  static async createWebsite(url: string) {
-    const websites = await Website.create({ url }, { returning: true });
-    return websites;
+  static createWebsite(url: string) {
+    return Website.create({ url }, { returning: true });
   }
 
-  static async updateWebsite(id: number, url: string) {
-    const websites = await Website.update(
-      { url },
-      { where: { id }, returning: true },
-    );
-    return websites;
+  static updateWebsite(id: number, url: string) {
+    return Website.update({ url }, { where: { id }, returning: true });
   }
 
-  static async deleteWebsite(id: number) {
-    const websites = await Website.destroy({ where: { id } });
-    return websites;
+  static deleteWebsite(id: number) {
+    return Website.destroy({ where: { id } });
   }
 }
 

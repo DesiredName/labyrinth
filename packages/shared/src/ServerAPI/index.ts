@@ -1,50 +1,16 @@
-import type { UserSafeAttributes } from '@shared/DAL/User.ts';
-import z from 'zod';
+export * from './auth.api.ts';
 
-type BaseAPIResponse<T, K> = {
-  success: boolean;
-  data: T;
-  meta: K;
-};
+class HTTP_CODES {
+  static readonly OK: 200;
+  static readonly CREATED: 201;
 
-//
+  static readonly VALIDATION_FAILURE: 400;
+  static readonly UNAUTHORIZED: 401;
+  static readonly FORBIDDEN: 403;
+  static readonly NOT_FOUND: 404;
+  static readonly CAN_NOT_CRUD: 422;
+  static readonly TOO_MANY_REQUESTS: 429;
+  static readonly SERVER_ERROR: 500;
+}
 
-const SignupUserRequest = z.object({
-  email: z.email().nonempty(),
-  username: z.string().nonempty(),
-  password: z.string().nonempty(),
-});
-
-type SignupUserRequestType = z.infer<typeof SignupUserRequest>;
-type SignupUserResponseType = BaseAPIResponse<
-  UserSafeAttributes | null,
-  unknown
->;
-
-const SigninUserRequest = z.object({
-  email: z.email().nonempty(),
-  password: z.string().nonempty(),
-});
-
-type SigninUserRequestType = z.infer<typeof SigninUserRequest>;
-type SigninUserResponseType = BaseAPIResponse<
-  UserSafeAttributes | null,
-  unknown
->;
-
-type CheckUserResponseType = BaseAPIResponse<
-  UserSafeAttributes | null,
-  unknown
->;
-
-//
-
-export { SignupUserRequest, SigninUserRequest };
-export type {
-  BaseAPIResponse,
-  SignupUserRequestType,
-  SignupUserResponseType,
-  SigninUserRequestType,
-  SigninUserResponseType,
-  CheckUserResponseType,
-};
+export { HTTP_CODES };

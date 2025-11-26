@@ -2,7 +2,7 @@ import express from 'express';
 import { router } from './routes/index.ts';
 import { errorMiddleware } from './middleware/error.middleware.ts';
 import cors from 'cors';
-import { wrpappedResponse } from './utils/wrapperResponse.ts';
+import { HTTP_CODES } from '@shared/index.ts';
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use('/api', router);
 
 // 404
 app.use((req, res, next) => {
-  wrpappedResponse(res, false);
+  res.sendStatus(HTTP_CODES.NOT_FOUND);
 });
 
 // global error

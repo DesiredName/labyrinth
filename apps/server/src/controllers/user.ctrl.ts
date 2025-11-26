@@ -1,15 +1,17 @@
 import type { Request, Response } from 'express';
 import { UserService } from '../services/user.srv.ts';
 import { verifyAuthCookie } from '../utils/assignAuthCookie.ts';
-import { wrpappedResponse } from '../utils/wrapperResponse.ts';
-import { wrappedRequestHandler } from '../utils/wrappedRequestHandler.ts';
+import { HTTP_CODES } from '@shared/index.ts';
 
-const getProfile = wrappedRequestHandler(
-  async (req: Request, res: Response) => {
-    const probablyUser = verifyAuthCookie(req);
-    const user = await UserService.getProfile(probablyUser?.email);
-    wrpappedResponse(res, user != null, user, 401);
-  },
-);
+const getProfile = async (req: Request, res: Response) => {
+  const probablyUser = verifyAuthCookie(req);
+  const user = await UserService.getProfile(probablyUser?.email);
+
+  if (user == null) {
+    return res.sendStatus(HTTP_CODES.UNAUTHORIZED);
+  }
+
+  res.json(user);
+};
 
 export { getProfile };

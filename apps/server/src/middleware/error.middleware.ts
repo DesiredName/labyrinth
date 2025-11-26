@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from 'express';
 import { logError } from '../services/log.srv.ts';
-import { wrpappedResponse } from '../utils/wrapperResponse.ts';
+import { HTTP_CODES } from '@shared/index.ts';
 
 function errorMiddleware(
   err: unknown,
@@ -8,7 +8,7 @@ function errorMiddleware(
   res: Response,
   next: NextFunction,
 ) {
-  const status = 500;
+  const status = HTTP_CODES.SERVER_ERROR;
   const stack =
     process.env.NODE_ENV === 'development'
       ? err instanceof Error
@@ -26,7 +26,7 @@ function errorMiddleware(
     stack,
   });
 
-  wrpappedResponse(res, false, undefined, status);
+  res.sendStatus(status);
 }
 
 export { errorMiddleware };
