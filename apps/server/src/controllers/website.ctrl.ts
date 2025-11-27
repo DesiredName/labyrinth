@@ -1,10 +1,18 @@
 import type { Request, Response } from 'express';
 import { WebsiteService } from '../services/website.srv.ts';
-import { HTTP_CODES } from '@webx/shared';
 import { RequestHelpers } from '../utils/requestHelpers.ts';
+import type {
+  CreateWebsiteRequestType,
+  DeleteWebsiteRequestType,
+  GetWebsiteRequestType,
+  UpdateWebsiteRequestType,
+} from '@webx/shared';
 
-const getWebsite = async (req: Request, res: Response) => {
-  const search = '1';
+const getWebsite = async (
+  req: Request<{}, {}, {}, GetWebsiteRequestType>,
+  res: Response,
+) => {
+  const search = req.query.search;
   const website = await WebsiteService.getWebsite(search);
 
   if (website == null) return RequestHelpers.not_found(res);
@@ -12,8 +20,11 @@ const getWebsite = async (req: Request, res: Response) => {
   RequestHelpers.success(res, website);
 };
 
-const createWebsite = async (req: Request, res: Response) => {
-  const url = '1';
+const createWebsite = async (
+  req: Request<{}, {}, CreateWebsiteRequestType>,
+  res: Response,
+) => {
+  const url = req.body.url;
   const website = await WebsiteService.createWebsite(url);
 
   if (website == null) return RequestHelpers.can_not_CRUD(res);
@@ -21,9 +32,12 @@ const createWebsite = async (req: Request, res: Response) => {
   RequestHelpers.created(res, website);
 };
 
-const updateWebsite = async (req: Request, res: Response) => {
-  const id = 1;
-  const url = '2';
+const updateWebsite = async (
+  req: Request<{}, {}, UpdateWebsiteRequestType>,
+  res: Response,
+) => {
+  const id = req.body.id;
+  const url = req.body.url;
   const website = await WebsiteService.updateWebsite(id, url);
 
   if (website == null) return RequestHelpers.can_not_CRUD(res);
@@ -31,8 +45,11 @@ const updateWebsite = async (req: Request, res: Response) => {
   RequestHelpers.success(res, website);
 };
 
-const deleteWebsite = async (req: Request, res: Response) => {
-  const id = 1;
+const deleteWebsite = async (
+  req: Request,
+  res: Response<any, { parsed: DeleteWebsiteRequestType }>,
+) => {
+  const { id } = res.locals.parsed;
   const website = await WebsiteService.deleteWebsite(id);
 
   if (website === 0) return RequestHelpers.can_not_CRUD(res);

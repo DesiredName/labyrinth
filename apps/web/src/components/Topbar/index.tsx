@@ -7,6 +7,11 @@ const Topbar = () => {
       <div className="grow-0">
         <BrandLogo className="text-2xl" />
       </div>
+      <div className="flex-1 flex justify-end">
+        <div>
+          <ThemeSwitcher />
+        </div>
+      </div>
     </nav>
   );
 };

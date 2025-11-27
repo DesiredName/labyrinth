@@ -4,8 +4,8 @@ import { verifyAuthCookie } from '../utils/assignAuthCookie.ts';
 import { RequestHelpers } from '../utils/requestHelpers.ts';
 
 const getProfile = async (req: Request, res: Response) => {
-  const probablyUser = verifyAuthCookie(req);
-  const user = await UserService.getProfile(probablyUser?.email);
+  const session = verifyAuthCookie(req);
+  const user = await UserService.getProfile(session?.email);
 
   if (user == null) RequestHelpers.forbidden(res);
 
