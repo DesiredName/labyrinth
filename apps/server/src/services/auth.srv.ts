@@ -16,6 +16,8 @@ class AuthService {
       email,
       username,
       password: hash,
+    }).catch(() => {
+      return null;
     });
     return sanitizeUser(user);
   }

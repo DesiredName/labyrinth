@@ -2,7 +2,9 @@ import { forwardRef } from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { clsxtw } from '../utils/clsxtw';
 
-const inputVariants = cva('inline-block border border-gray-200 rounded-md', {
+const inputBase = 'inline-block border border-gray-200 rounded-md';
+
+const inputVariants = cva(inputBase, {
   variants: {
     uiSize: {
       xs: 'px-1 py-1 text-xs',

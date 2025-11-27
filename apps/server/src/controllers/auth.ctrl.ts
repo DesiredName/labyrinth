@@ -39,7 +39,7 @@ const login = async (
   const { email, password } = req.body;
   const user = await AuthService.verifyUser({ email, password });
 
-  if (user == null) return RequestHelpers.unauthorized(res);
+  if (user == null) return RequestHelpers.not_found(res);
 
   return AuthRequestHelpers.success(res, user);
 };
@@ -54,7 +54,7 @@ const register = async (
   const { email, username, password } = req.body;
   const user = await AuthService.registerNewUser({ email, username, password });
 
-  if (user == null) return RequestHelpers.forbidden(res);
+  if (user == null) return RequestHelpers.can_not_CRUD(res);
 
   return AuthRequestHelpers.created(res, user);
 };

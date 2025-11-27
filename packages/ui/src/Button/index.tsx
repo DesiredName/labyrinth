@@ -3,7 +3,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { clsxtw } from '../utils/clsxtw';
 
 const buttonBase = `
-  inline-flex items-center justify-center rounded-md cursor-pointer transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
+  inline-flex items-center justify-center rounded-md cursor-pointer transition-all
+  focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed
+  wui-shadow-border
+  hover:shadow-none
+  hover:bg-[var(--color-btn-bg-hover)]
+  hover:border-[var(--color-btn-border-hover)]
 `;
 
 const buttonVariants = cva(buttonBase, {
@@ -19,10 +24,10 @@ const buttonVariants = cva(buttonBase, {
       primary: `
           bg-[var(--color-btn-bg)]
           text-[var(--color-btn-text)]
-          border border-[var(--color-btn-border)]
-          hover:bg-[var(--color-btn-bg-hover)]
-          hover:border-[var(--color-btn-border-hover)]
         `,
+      rounded: `
+        rounded-full
+      `,
     },
   },
   defaultVariants: {

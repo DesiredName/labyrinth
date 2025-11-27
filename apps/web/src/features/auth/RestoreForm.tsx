@@ -38,7 +38,7 @@ const RestoreForm = (props: RestoreFormProps) => {
 
   return (
     <form
-      className={clsxtw('sign-form', props.className)}
+      className={clsxtw('sign-form wui-shadow-border', props.className)}
       method="post"
       onSubmit={handleSubmit}
     >

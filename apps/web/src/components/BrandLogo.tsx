@@ -8,7 +8,7 @@ const BrandLogo = React.forwardRef<HTMLDivElement, BrandLogoProps>(
     <div
       ref={ref}
       className={clsxtw(
-        'text-lg font-bold text-nowrap whitespace-pre text-(--color-secondary)',
+        'text-lg font-bold text-nowrap whitespace-pre text-(--color-secondary) select-none',
         className,
       )}
       {...props}

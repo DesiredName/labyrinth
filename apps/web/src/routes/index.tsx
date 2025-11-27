@@ -5,8 +5,8 @@ import { NotFound } from '../not-found';
 import { RestorePassword } from '../pages/auth/restore-password';
 import { Register } from '../pages/auth/register';
 import { Dashboard } from '../pages/dashboard';
-import { Compaings } from '../pages/compaings';
-import { CompainProfit } from '../pages/reports/compain-profit';
+import { Campaigns } from '../pages/campaigns';
+import { CampaignProfit } from '../pages/reports/campaign-profit';
 import { CountryProfit } from '../pages/reports/country-profit';
 import { DateProfit } from '../pages/reports/date-profit';
 import { AnimatePresence } from 'framer-motion';
@@ -54,13 +54,13 @@ const AppRouter = () => {
             element={<ProtectedRoute element={<Dashboard />} />}
           />
           <Route
-            path="compaings"
-            element={<ProtectedRoute element={<Compaings />} />}
+            path="campaigns"
+            element={<ProtectedRoute element={<Campaigns />} />}
           />
           <Route path="report">
             <Route
-              path="compain-profit"
-              element={<ProtectedRoute element={<CompainProfit />} />}
+              path="campaign-profit"
+              element={<ProtectedRoute element={<CampaignProfit />} />}
             />
             <Route
               path="country-profit"

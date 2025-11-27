@@ -43,7 +43,7 @@ const LoginForm = (props: LoginFormProps) => {
 
   return (
     <form
-      className={clsxtw('sign-form', props.className)}
+      className={clsxtw('sign-form wui-shadow-border', props.className)}
       onSubmit={handleSubmit}
     >
       <label htmlFor="email">Email</label>

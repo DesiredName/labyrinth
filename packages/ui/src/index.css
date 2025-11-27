@@ -1,3 +1,7 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@utility wui-shadow-border {
+  @apply transition-all duration-300 shadow-md shadow-black/50;
+}

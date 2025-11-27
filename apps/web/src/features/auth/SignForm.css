@@ -2,5 +2,5 @@
 
 .sign-form {
   @apply grid grid-cols-[max-content_1fr] auto-rows-auto justify-center items-center gap-3;
-  @apply shadow-xl p-3 rounded-md;
+  @apply p-3 rounded-md;
 }

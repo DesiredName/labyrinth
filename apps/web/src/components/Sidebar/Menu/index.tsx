@@ -1,31 +1,49 @@
 import { forwardRef } from 'react';
+import { UIButton } from '@webx/ui';
 
 interface UIMenuProps extends React.MenuHTMLAttributes<HTMLMenuElement> {
-  id: string;
-  items: UIMenuEntry[];
+  items?: UIMenuSubitem[];
 }
 
-interface UIMenuEntry {
-  id: string;
+interface UIMenuSubitem {
   to: () => React.ReactNode;
-  items?: UIMenuProps[];
+  items?: UIMenuSubitem[];
+  level?: number;
 }
 
-const MenuEntry = ({ id, to, items }: UIMenuEntry) => (
-  <li key={id}>
-    <div>{to()}</div>
-    {items?.map((submenu, idx) => (
-      <UIMenu key={['sub', id, idx].join('_')} {...submenu} />
-    ))}
-  </li>
-);
+const UIMenuSubitem = ({ to, items, level = 0 }: UIMenuSubitem) => {
+  return (
+    <li data-level={level}>
+      <UIButton variant="rounded" className="p-2">
+        {to()}
+      </UIButton>
+      {items?.length && (
+        <menu>
+          {items.map((subitem, idx) => (
+            <UIMenuSubitem
+              key={[level, idx].join('-')}
+              level={level + 1}
+              {...subitem}
+            />
+          ))}
+        </menu>
+      )}
+    </li>
+  );
+};
 
 const UIMenu = forwardRef<HTMLMenuElement, UIMenuProps>(
-  ({ id, items, ...props }: UIMenuProps, ref) => {
+  ({ items, ...props }: UIMenuProps, ref) => {
+    const level = 0;
+
     return (
-      <menu ref={ref} key={id} {...props}>
-        {items.map((items, idx) => (
-          <MenuEntry key={['sub', id, idx].join('_')} {...items} />
+      <menu ref={ref} key={level} {...props} data-level={level}>
+        {items?.map((subitem, idx) => (
+          <UIMenuSubitem
+            key={[level, idx].join('-')}
+            level={level + 1}
+            {...subitem}
+          />
         ))}
       </menu>
     );

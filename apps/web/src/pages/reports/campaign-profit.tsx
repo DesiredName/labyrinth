@@ -1,9 +1,9 @@
 import { PageTransition } from '../../components/PageTransition';
 
-const CompainProfit = () => (
+const CampaignProfit = () => (
   <PageTransition>
-    <main>Compain Profit Report</main>
+    <main>Campaign Profit Report</main>
   </PageTransition>
 );
 
-export { CompainProfit };
+export { CampaignProfit };

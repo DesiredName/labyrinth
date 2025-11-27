@@ -4,7 +4,7 @@
   }
 
   a {
-    @apply block no-underline text-(--color-btn-text);
+    @apply block no-underline text-(--color-btn-text) select-none;
   }
 
   a.active {
@@ -16,21 +16,25 @@
   }
 
   li {
-    @apply px-1 py-2 text-center whitespace-nowrap;
+    @apply text-center whitespace-nowrap;
     @apply relative cursor-pointer;
   }
 
-  li > div:first-child {
-    @apply bg-(--color-btn-bg) border border-(--color-btn-border) hover:bg-(--color-btn-bg-hover) hover:border-(--color-btn-border-hover);
-    @apply rounded-full p-2 shadow-sm shadow-black/50;
+  li + li {
+    @apply mt-3;
+  }
+
+  li:not([data-level='0']) > button {
+    @apply w-full;
   }
 
   li > menu {
     @apply absolute pointer-events-none;
-    @apply top-0 left-full;
+    @apply top-0 left-full px-2;
     @apply transition-opacity duration-300 delay-100 opacity-0;
   }
 
+  li:focus-within > menu,
   li:hover > menu {
     @apply pointer-events-auto opacity-100;
   }

@@ -1,8 +1,11 @@
 import type { Request, Response } from 'express';
 import { WebsitesService } from '../services/websites.srv.ts';
+import { RequestHelpers } from '../utils/requestHelpers.ts';
 
 const getWebsites = async (req: Request, res: Response) => {
-  return await WebsitesService.getWebsites();
+  const webistes = await WebsitesService.getWebsites();
+
+  RequestHelpers.success(res, webistes);
 };
 
 export { getWebsites };
