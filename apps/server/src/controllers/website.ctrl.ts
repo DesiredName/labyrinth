@@ -12,8 +12,7 @@ const getWebsite = async (
   req: Request<{}, {}, {}, GetWebsiteRequestType>,
   res: Response,
 ) => {
-  const search = req.query.search;
-  const website = await WebsiteService.getWebsite(search);
+  const website = await WebsiteService.getWebsite(req.query);
 
   if (website == null) return RequestHelpers.not_found(res);
 
@@ -24,8 +23,7 @@ const createWebsite = async (
   req: Request<{}, {}, CreateWebsiteRequestType>,
   res: Response,
 ) => {
-  const url = req.body.url;
-  const website = await WebsiteService.createWebsite(url);
+  const website = await WebsiteService.createWebsite(req.body);
 
   if (website == null) return RequestHelpers.can_not_CRUD(res);
 
@@ -36,9 +34,7 @@ const updateWebsite = async (
   req: Request<{}, {}, UpdateWebsiteRequestType>,
   res: Response,
 ) => {
-  const id = req.body.id;
-  const url = req.body.url;
-  const website = await WebsiteService.updateWebsite(id, url);
+  const website = await WebsiteService.updateWebsite(req.body);
 
   if (website == null) return RequestHelpers.can_not_CRUD(res);
 
@@ -46,11 +42,10 @@ const updateWebsite = async (
 };
 
 const deleteWebsite = async (
-  req: Request,
+  _: Request,
   res: Response<any, { parsed: DeleteWebsiteRequestType }>,
 ) => {
-  const { id } = res.locals.parsed;
-  const website = await WebsiteService.deleteWebsite(id);
+  const website = await WebsiteService.deleteWebsite(res.locals.parsed);
 
   if (website === 0) return RequestHelpers.can_not_CRUD(res);
 

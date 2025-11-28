@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import { UIButton } from '@webx/ui';
 
 interface UIMenuProps extends React.MenuHTMLAttributes<HTMLMenuElement> {
   items?: UIMenuSubitem[];
@@ -14,9 +13,7 @@ interface UIMenuSubitem {
 const UIMenuSubitem = ({ to, items, level = 0 }: UIMenuSubitem) => {
   return (
     <li data-level={level}>
-      <UIButton variant="rounded" className="p-2">
-        {to()}
-      </UIButton>
+      {to()}
       {items?.length && (
         <menu>
           {items.map((subitem, idx) => (

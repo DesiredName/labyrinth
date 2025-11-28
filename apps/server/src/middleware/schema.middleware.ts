@@ -5,11 +5,16 @@ import type { ZodObject } from 'zod';
 const validatedSchema =
   (schema: ZodObject) => (req: Request, res: Response, next: NextFunction) => {
     try {
-      res.locals.parsed = schema.parse({
+      const parsed = schema.parse({
         body: req.body,
         query: req.query,
         params: req.params,
       });
+
+      res.locals.parsed = {
+        query: parsed.query,
+        params: parsed.params,
+      };
 
       next();
     } catch (e: any) {

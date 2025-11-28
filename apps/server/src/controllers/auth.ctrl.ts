@@ -36,8 +36,7 @@ const login = async (
   req: Request<{}, {}, LoginUserRequestType>,
   res: Response,
 ) => {
-  const { email, password } = req.body;
-  const user = await AuthService.verifyUser({ email, password });
+  const user = await AuthService.verifyUser(req.body);
 
   if (user == null) return RequestHelpers.not_found(res);
 
@@ -51,8 +50,7 @@ const register = async (
   req: Request<{}, {}, RegisterUserRequestType>,
   res: Response,
 ) => {
-  const { email, username, password } = req.body;
-  const user = await AuthService.registerNewUser({ email, username, password });
+  const user = await AuthService.registerNewUser(req.body);
 
   if (user == null) return RequestHelpers.can_not_CRUD(res);
 
@@ -62,7 +60,7 @@ const register = async (
 /**
  * signout user
  */
-const signout = async (req: Request, res: Response) => {
+const signout = async (_: Request, res: Response) => {
   clearAuthCookie(res);
   res.sendStatus(HTTP_CODES.OK);
 };

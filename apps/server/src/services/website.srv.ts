@@ -1,8 +1,14 @@
 import { col, fn, Op } from 'sequelize';
 import { Website } from '../models/Website.ts';
+import type {
+  CreateWebsiteRequestType,
+  DeleteWebsiteRequestType,
+  GetWebsiteRequestType,
+  UpdateWebsiteRequestType,
+} from '@webx/shared';
 
 class WebsiteService {
-  static getWebsite(search: string) {
+  static getWebsite({ search }: GetWebsiteRequestType) {
     return Website.findOne({
       where: {
         [Op.or]: [
@@ -19,15 +25,15 @@ class WebsiteService {
     });
   }
 
-  static createWebsite(url: string) {
+  static createWebsite({ url }: CreateWebsiteRequestType) {
     return Website.create({ url }, { returning: true });
   }
 
-  static updateWebsite(id: number, url: string) {
+  static updateWebsite({ id, url }: UpdateWebsiteRequestType) {
     return Website.update({ url }, { where: { id }, returning: true });
   }
 
-  static deleteWebsite(id: number) {
+  static deleteWebsite({ id }: DeleteWebsiteRequestType) {
     return Website.destroy({ where: { id } });
   }
 }
