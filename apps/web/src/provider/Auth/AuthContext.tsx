@@ -1,7 +1,7 @@
 import { createContext } from 'react';
-import { useAuth } from './useAuthAPI';
+import { useAuthAPI } from './useAuthAPI';
 
-type AuthContextType = ReturnType<typeof useAuth>;
+type AuthContextType = ReturnType<typeof useAuthAPI>;
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

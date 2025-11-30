@@ -6,7 +6,7 @@ import { ApiClient } from '../../utils/api-client';
 import { useState, useCallback } from 'react';
 import { type UserSafeAttributes } from '@webx/shared';
 
-const useAuth = (apiClient: ApiClient) => {
+const useAuthAPI = (apiClient: ApiClient) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +15,7 @@ const useAuth = (apiClient: ApiClient) => {
   const checkAuth = useCallback(async () => {
     setIsInitialized(false);
     try {
-      const user = await apiClient.checkAuth();
+      const user = await apiClient.auth.checkAuth();
       setIsAuthenticated(user != null);
       setUser(user);
       return user;
@@ -31,7 +31,7 @@ const useAuth = (apiClient: ApiClient) => {
     async (credentials: LoginUserRequestType) => {
       setIsLoading(true);
       try {
-        const user = await apiClient.login(credentials);
+        const user = await apiClient.auth.login(credentials);
         setIsAuthenticated(user != null);
         setUser(user);
         return true;
@@ -50,7 +50,7 @@ const useAuth = (apiClient: ApiClient) => {
     async (userData: RegisterUserRequestType) => {
       setIsLoading(true);
       try {
-        const user = await apiClient.register(userData);
+        const user = await apiClient.auth.register(userData);
         setIsAuthenticated(user != null);
         setUser(user);
         return true;
@@ -68,7 +68,7 @@ const useAuth = (apiClient: ApiClient) => {
   const signout = useCallback(async () => {
     setIsLoading(true);
     try {
-      await apiClient.signout();
+      await apiClient.auth.signout();
     } finally {
       setIsAuthenticated(false);
       setUser(null);
@@ -90,4 +90,4 @@ const useAuth = (apiClient: ApiClient) => {
   };
 };
 
-export { useAuth };
+export { useAuthAPI };
