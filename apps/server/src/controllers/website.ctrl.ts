@@ -38,7 +38,7 @@ const updateWebsite = async (
 
   if (website == null) return RequestHelpers.can_not_CRUD(res);
 
-  RequestHelpers.success(res, website);
+  RequestHelpers.success(res, website[1]);
 };
 
 const deleteWebsite = async (

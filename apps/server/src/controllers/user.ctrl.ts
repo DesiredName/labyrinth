@@ -7,7 +7,7 @@ const getProfile = async (req: Request, res: Response) => {
   const session = verifyAuthCookie(req);
   const user = await UserService.getProfile(session?.email);
 
-  if (user == null) RequestHelpers.forbidden(res);
+  if (user == null) return RequestHelpers.forbidden(res);
 
   RequestHelpers.success(res, user);
 };

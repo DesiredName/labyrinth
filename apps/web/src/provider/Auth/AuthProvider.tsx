@@ -1,10 +1,10 @@
 import { useEffect, type ReactNode } from 'react';
 import { useAuthAPI } from './useAuthAPI';
 import { AuthContext } from './AuthContext';
-import { userServerAPI } from '../ServerAPI';
+import { useServerAPI } from '../ServerAPI';
 
 const AuthProvider: React.FC<{ children: ReactNode }> = (props) => {
-  const apiClient = userServerAPI();
+  const apiClient = useServerAPI();
   const auth = useAuthAPI(apiClient);
 
   useEffect(() => {

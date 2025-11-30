@@ -1,20 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
+import { useServerAPI } from '../provider/ServerAPI';
 
 const useWebsites = () => {
-  const {
-    isPending,
-    data: websites,
-    refetch,
-  } = useQuery({
-    queryKey: [`websites-list`],
-    queryFn: () => fetch(``).then((r) => r.json()),
-  });
+  const serverAPI = useServerAPI();
 
-  return {
-    isPending,
-    websites,
-    refetch,
-  };
+  return useQuery({
+    queryKey: [`websites-list`],
+    queryFn: serverAPI.websites.read,
+  });
 };
 
 export { useWebsites };

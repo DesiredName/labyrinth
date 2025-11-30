@@ -1,9 +1,15 @@
 import { useWebsites } from '../../hooks/useWebsites';
 
 const WebsitesList = () => {
-  const { websites } = useWebsites();
+  const { data: websites } = useWebsites();
 
-  return <div>{websites}</div>;
+  return (
+    <ul>
+      {websites?.map((w) => (
+        <li key={w.id}>{w.url}</li>
+      ))}
+    </ul>
+  );
 };
 
 export { WebsitesList };

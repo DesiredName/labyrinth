@@ -1,2 +1,2 @@
 export { ServerAPIProvider } from './ServerAPIProvider';
-export { userServerAPI } from './userServerAPI';
+export { useServerAPI } from './useServerAPI';

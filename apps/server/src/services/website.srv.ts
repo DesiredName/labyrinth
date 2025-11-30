@@ -25,8 +25,8 @@ class WebsiteService {
     });
   }
 
-  static createWebsite({ url }: CreateWebsiteRequestType) {
-    return Website.create({ url }, { returning: true });
+  static createWebsite(params: CreateWebsiteRequestType) {
+    return Website.create(params);
   }
 
   static updateWebsite({ id, url }: UpdateWebsiteRequestType) {
