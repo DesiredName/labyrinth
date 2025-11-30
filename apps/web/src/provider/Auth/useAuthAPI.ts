@@ -13,7 +13,6 @@ const useAuthAPI = (apiClient: ApiClient) => {
   const [user, setUser] = useState<UserSafeAttributes | null>(null);
 
   const checkAuth = useCallback(async () => {
-    setIsInitialized(false);
     try {
       const user = await apiClient.auth.checkAuth();
       setIsAuthenticated(user != null);

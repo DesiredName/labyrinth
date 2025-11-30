@@ -5,7 +5,16 @@ const WebsitesToolbar = () => {
   const { openDialog } = useDialogs();
   return (
     <div>
-      <UIButton onClick={() => openDialog('create_campaign')}>Create</UIButton>
+      <UIButton
+        onClick={() =>
+          openDialog({
+            id: 'create_campaign',
+            component: <div>create campaign</div>,
+          })
+        }
+      >
+        Create
+      </UIButton>
     </div>
   );
 };

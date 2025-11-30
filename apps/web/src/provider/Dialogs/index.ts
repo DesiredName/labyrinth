@@ -1,2 +1,2 @@
 export { DialogsProvider } from './DialogsProvider';
-export { DialogsContext } from './DialogsContext';
+export { useDialogs } from './useDialogs';

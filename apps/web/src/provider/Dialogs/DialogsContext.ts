@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import type { DialogID } from './DialogsProvider';
+import type { DialogID, DialogItem } from './DialogsProvider';
 
 type DialogsContextType = {
-  dialogs: Set<DialogID>;
-  openDialog: (id: DialogID) => void;
+  dialogs: Map<DialogID, DialogItem>;
+  openDialog: (item: DialogItem) => void;
   closeDialog: (id: DialogID) => void;
 };
 
