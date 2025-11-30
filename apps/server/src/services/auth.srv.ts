@@ -25,6 +25,7 @@ class AuthService {
   static async verifyUser({ email, password }: LoginUserRequestType) {
     const user = await User.findOne({ where: { email } });
     const hash = user?.getDataValue('password') ?? '';
+    if (hash == '') return null;
     const isEqual = await argon2.verify(hash, password);
     const output = isEqual ? user : null;
     return sanitizeUser(output);

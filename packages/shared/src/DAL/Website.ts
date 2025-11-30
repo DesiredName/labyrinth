@@ -1,10 +1,10 @@
-import type { Optional } from 'sequelize';
+import type { CreateWebsiteRequestType } from '@shared/ServerAPI/website.api.ts';
 
 type WebsiteAttributes = {
   id: number;
-  url: string;
-};
+  createdAt?: Date;
+} & CreateWebsiteRequestType;
 
-type WebsiteCreationAttributes = Optional<WebsiteAttributes, 'id'>;
+type WebsiteCreationAttributes = CreateWebsiteRequestType;
 
 export type { WebsiteAttributes, WebsiteCreationAttributes };

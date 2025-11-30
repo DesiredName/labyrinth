@@ -3,11 +3,12 @@ import { db } from './services/db.srv.ts';
 import { logMessage } from './services/log.srv.ts';
 
 const port = process.env.SERVER_PORT ?? 3000;
+const isDev = process.env.NODE_ENV === 'development';
 
 logMessage(`Starting application`, { port });
 
 const start = async () => {
-  await db.sync({ alter: false, logging: true });
+  await db.sync({ force: isDev, logging: isDev });
   return app.listen(port, () => {
     logMessage(`Application has started`, { port });
   });

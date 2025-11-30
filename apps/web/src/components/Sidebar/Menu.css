@@ -3,15 +3,12 @@
     @apply cursor-pointer;
   }
 
-  a {
-    @apply block no-underline text-(--color-btn-text) select-none;
-  }
-
-  a.active {
+  button[data-active='true'] {
     @apply text-(--color-accent);
   }
 
-  & > li:has(a.active) .icon {
+  li:has(li > button[data-active='true']) > button,
+  li:has(li > button[data-active='true']) > .icon {
     @apply text-(--color-accent);
   }
 
@@ -21,7 +18,7 @@
   }
 
   li + li {
-    @apply mt-3;
+    @apply mt-10;
   }
 
   li:not([data-level='0']) > button {

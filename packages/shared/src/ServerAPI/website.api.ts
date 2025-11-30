@@ -11,6 +11,8 @@ type GetWebsiteRequestType = z.infer<typeof GetWebsiteRequest>['query'];
 const CreateWebsiteRequest = z.object({
   body: z.object({
     url: z.string().nonempty(),
+    isActive: z.boolean().default(true),
+    settings: z.string().default('{}'),
   }),
 });
 

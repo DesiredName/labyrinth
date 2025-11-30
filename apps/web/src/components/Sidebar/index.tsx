@@ -1,4 +1,4 @@
-import { NavLink, useNavigate, type NavigateFunction } from 'react-router';
+import { useMatch, useNavigate, type NavigateFunction } from 'react-router';
 import { UIMenu, type UIMenuProps } from './Menu';
 import { IconDashboard } from '../Icons/dashboard';
 import { IconCampaings } from '../Icons/campaings';
@@ -9,11 +9,20 @@ import { UIButton } from '@webx/ui';
 import type { ReactNode } from 'react';
 
 const buildProps = (navigate: NavigateFunction): UIMenuProps => {
-  const buildTo = (to: string, child?: ReactNode) => (
-    <UIButton variant="rounded" className="p-2" onClick={() => navigate(to)}>
-      {child}
-    </UIButton>
-  );
+  const buildTo = (to: string, child?: ReactNode) => {
+    const isActive = useMatch(to) != null;
+
+    return (
+      <UIButton
+        variant="rounded"
+        data-active={isActive}
+        className="p-2"
+        onClick={() => navigate(to)}
+      >
+        {child}
+      </UIButton>
+    );
+  };
 
   return {
     items: [

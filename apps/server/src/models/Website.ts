@@ -20,6 +20,16 @@ function initWebsite(db: Sequelize) {
         allowNull: false,
         defaultValue: '',
       },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
+      settings: {
+        type: DataTypes.TEXT('long'),
+        allowNull: false,
+        defaultValue: '{}',
+      },
     },
     {
       sequelize: db,
